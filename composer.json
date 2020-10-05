@@ -1,6 +1,8 @@
 {
     "name": "shusaura85/fancourier-api",
     "description": "Consumer for FanCourier API",
+	"version": "1.2.0",
+	"type": "library",
     "authors": [
         {
             "name": "Cristian Nicolescu",
@@ -12,6 +14,8 @@
         }
     ],
     "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.0",
         "ext-curl": "*",
