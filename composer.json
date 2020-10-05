@@ -1,0 +1,32 @@
+{
+    "name": "shusaura85/fancourier-api",
+    "description": "Consumer for FanCourier API",
+    "authors": [
+        {
+            "name": "Cristian Nicolescu",
+            "email": "cristi@mandagreen.com"
+        },
+        {
+            "name": "Shu Saura"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fancourier\\": "src/Fancourier/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fancourier\\Tests\\": "tests/"
+        }
+    }
+}
