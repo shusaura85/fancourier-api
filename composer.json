@@ -1,7 +1,6 @@
 {
     "name": "shusaura85/fancourier-api",
     "description": "Consumer for FanCourier API",
-	"version": "1.2.0",
 	"type": "library",
     "authors": [
         {

@@ -43,6 +43,7 @@ class CreateAwb extends AbstractRequest implements RequestInterface
     protected $height = 0;
     protected $length = 0;
     protected $width = 0;
+	protected $restitution = '';
 
     protected $tempDir = '/tmp';
 
@@ -108,7 +109,7 @@ class CreateAwb extends AbstractRequest implements RequestInterface
             'Height of packet' => $this->height,
             'Width of packet' => $this->length,
             'Lenght of packet' => $this->width,
-            'refund' => '',
+            'refund' => $this->restitution,
             'cost_center' => '',
             'options' => $this->packOptions($this->getOptions()),
             'packing' => '',
@@ -666,6 +667,24 @@ class CreateAwb extends AbstractRequest implements RequestInterface
     {
         $this->width = $width;
         return $this;
+    }
+
+    /**
+     * @param string $restitution
+     * @return CreateAwb
+     */
+    public function setRestitution($restitution)
+    {
+        $this->restitution = $restitution;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRestitution()
+    {
+        return $this->restitution;
     }
 
     /**
