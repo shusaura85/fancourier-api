@@ -764,7 +764,7 @@ class CreateAwbBulk extends AbstractRequest implements RequestInterface
 
     /**
      * @param string $restitution
-     * @return CreateAwb
+     * @return CreateAwbBulk
      */
     public function setRestitution($restitution)
     {
