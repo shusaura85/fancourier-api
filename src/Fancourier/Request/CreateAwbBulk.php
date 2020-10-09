@@ -100,7 +100,7 @@ class CreateAwbBulk extends AbstractRequest implements RequestInterface
 				{
 				fputcsv($f, array_values($data));
 				}
-            fclose($f); echo $file;
+            fclose($f);
             return $file;
         }
 
