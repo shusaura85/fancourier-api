@@ -8,7 +8,7 @@ class Client
 
     private $error;
 
-    private $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0';
+    private $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0';
 
     public function __construct()
     {
@@ -19,7 +19,8 @@ class Client
     {
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_USERAGENT, $this->useragent);
-        curl_setopt($this->curl, CURLOPT_TIMEOUT, 10);
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 60);
+        curl_setopt($this->curl, CURLOPT_TIMEOUT, 600);
         curl_setopt($this->curl, CURLOPT_HEADER, 0);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
 
