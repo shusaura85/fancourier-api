@@ -19,6 +19,9 @@
 - <a href="#contributing">Contributing</a>
 - <a href="#license">License</a>
 
+## Warning
+The API that this library uses will stop functioning after March 1st, 2024!
+
 ## Installation
 ### Requirements
 
