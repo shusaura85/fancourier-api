@@ -4,7 +4,6 @@
 - <a href="#installation">Installation</a>
     - <a href="#composer">Requirements</a>
     - <a href="#composer">Composer</a>
-    - <a href="#laravel">Laravel</a>
 - <a href="#usage">Usage</a>
     - <a href="#authentication">Authentication</a>
     - <a href="#get-estimated-shipping-cost">Get estimated shipping cost</a>
@@ -20,7 +19,8 @@
 - <a href="#license">License</a>
 
 ## Warning
-The API that this library uses will stop functioning after March 1st, 2024!
+The API that this library uses will stop functioning after March 1st, 2024!  
+**NEW VERSION** that will work with Fan Courier API v2 will be ready by end of 2023 but it won't be backwards compatible and changes will be required to existing code!   
 
 ## Installation
 ### Requirements
