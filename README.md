@@ -90,18 +90,18 @@ Response
 ```php
 if ($response->isOk()) {
     var_dump($response->getData()); // raw data
-	// or just the information you want
-	echo "extraKmCost: ". $response->getKmCost().'<br />';
-	echo "weightCost: ". $response->getWeightCost().'<br />';
-	echo "insuranceCost: ". $response->getInsuranceCost().'<br />';
-	echo "optionsCost: ". $response->getOptionsCost().'<br />';
-	echo "fuelCost: ". $response->getFuelCost().'<br />';
-	echo "costNoVAT: ". $response->getCost().'<br />';
-	echo "vat: ". $response->getCostVat().'<br />';
-	echo "total: ".$response->getCostTotal().'<br />';
+    // or just the information you want
+    echo "extraKmCost: ". $response->getKmCost().'<br />';
+    echo "weightCost: ". $response->getWeightCost().'<br />';
+    echo "insuranceCost: ". $response->getInsuranceCost().'<br />';
+    echo "optionsCost: ". $response->getOptionsCost().'<br />';
+    echo "fuelCost: ". $response->getFuelCost().'<br />';
+    echo "costNoVAT: ". $response->getCost().'<br />';
+    echo "vat: ". $response->getCostVat().'<br />';
+    echo "total: ".$response->getCostTotal().'<br />';
 } else {
     var_dump($response->getErrorMessage());
-	print_r($response->getAllErrors());
+    print_r($response->getAllErrors());
 }
 ```
 
@@ -110,23 +110,23 @@ Request
 ```php
 $awb = new Fancourier\Objects\AwbIntern();
 $awb
-	->setService('Cont Colector')
-	->setPaymentType(Fancourier\Request\CreateAwb::TYPE_SENDER)
-	->setParcels(1)
-	->setWeight(1)	// in kg
-	->setCoD(199.99) // suma de incasat
-	->setDeclaredValue(1000)
-	->setSizes(10,5,1) // in cm
-	->setNotes('testing notes')
-	->setContents('SKU-1, SKU-2')
-	->setRecipientName("John Ivy")
-	->setPhone('0723000000')
-	->setCounty('Arad')
-	->setCity('Aciuta')
-	->setStreet('Str Lunga')
-	->setNumber(1)
-	->addOption('S')
-	->addOption('X');
+    ->setService('Cont Colector')
+    ->setPaymentType(Fancourier\Request\CreateAwb::TYPE_SENDER)
+    ->setParcels(1)
+    ->setWeight(1)    // in kg
+    ->setCoD(199.99) // suma de incasat
+    ->setDeclaredValue(1000)
+    ->setSizes(10,5,1) // in cm
+    ->setNotes('testing notes')
+    ->setContents('SKU-1, SKU-2')
+    ->setRecipientName("John Ivy")
+    ->setPhone('0723000000')
+    ->setCounty('Arad')
+    ->setCity('Aciuta')
+    ->setStreet('Str Lunga')
+    ->setNumber(1)
+    ->addOption('S')
+    ->addOption('X');
 
 $request = new Fancourier\Request\CreateAwb();
 $request->addAwb($awb);
@@ -137,24 +137,24 @@ Response
 $response = $fan->createAwb($request);
 
 if ($response->isOk()) {
-	var_dump($response->getData()); // raw data
-	// or the AWBIntern objects updated with the response information
-	$al = $response->getAll();
-	echo "Count: ".count($al)."<br />";
-	foreach ($al as $awbr)
-		{
-		if ($awbr->hasErrors())
-			{
-			print_r($awbr->getErrors());
-			}
-		else
-			{
-			echo "AWB: ".$awbr->getAwb()."<br />";
-			}
-		}
-	
+    var_dump($response->getData()); // raw data
+    // or the AWBIntern objects updated with the response information
+    $al = $response->getAll();
+    echo "Count: ".count($al)."<br />";
+    foreach ($al as $awbr)
+        {
+        if ($awbr->hasErrors())
+            {
+            print_r($awbr->getErrors());
+            }
+        else
+            {
+            echo "AWB: ".$awbr->getAwb()."<br />";
+            }
+        }
+    
 } else {
-	var_dump($response->getErrorMessage());
+    var_dump($response->getErrorMessage());
 }
 ```
 
@@ -168,9 +168,9 @@ $request = new Fancourier\Request\CreateAwb();
 // create the first awb
 $awb = new Fancourier\Objects\AwbIntern();
 $awb
-	->setService('Cont Colector')
-	....
-	->addOption('X');
+    ->setService('Cont Colector')
+    ....
+    ->addOption('X');
 
 // add it to the request
 $request->addAwb($awb);
@@ -178,9 +178,9 @@ $request->addAwb($awb);
 // create another awb
 $awb = new Fancourier\Objects\AwbIntern();
 $awb
-	->setService('Cont Colector')
-	....
-	->addOption('X');
+    ->setService('Cont Colector')
+    ....
+    ->addOption('X');
 
 // add it to the request
 $request->addAwb($awb);
@@ -188,9 +188,9 @@ $request->addAwb($awb);
 // create another awb
 $awb = new Fancourier\Objects\AwbIntern();
 $awb
-	->setService('Cont Colector')
-	....
-	->addOption('X');
+    ->setService('Cont Colector')
+    ....
+    ->addOption('X');
 
 // add it to the request
 $request->addAwb($awb);
@@ -201,24 +201,24 @@ Response
 $response = $fan->createAwb($request);
 
 if ($response->isOk()) {
-	var_dump($response->getData()); // raw data
-	// or the AWBIntern objects updated with the response information
-	$al = $response->getAll();
-	echo "Count: ".count($al)."<br />";
-	foreach ($al as $awbr)
-		{
-		if ($awbr->hasErrors())
-			{
-			print_r($awbr->getErrors());
-			}
-		else
-			{
-			echo "AWB: ".$awbr->getAwb()."<br />";
-			}
-		}
-	
+    var_dump($response->getData()); // raw data
+    // or the AWBIntern objects updated with the response information
+    $al = $response->getAll();
+    echo "Count: ".count($al)."<br />";
+    foreach ($al as $awbr)
+        {
+        if ($awbr->hasErrors())
+            {
+            print_r($awbr->getErrors());
+            }
+        else
+            {
+            echo "AWB: ".$awbr->getAwb()."<br />";
+            }
+        }
+    
 } else {
-	var_dump($response->getErrorMessage());
+    var_dump($response->getErrorMessage());
 }
 ```
 
@@ -297,8 +297,8 @@ Request
 ```php
 $request = new Fancourier\Request\PrintAwb();
 $request
-	->setPdf(true)
-	->setAwb('2150900120086');
+    ->setPdf(true)
+    ->setAwb('2150900120086');
 ```
 Response
 ```php
@@ -307,7 +307,7 @@ if ($response->isOk()) {
     echo $response->getData();
 } else {
     var_dump($response->getErrorMessage());
-	print_r($response->getAllErrors());
+    print_r($response->getAllErrors());
 }
 ```
 
@@ -319,8 +319,8 @@ Request
 ```php
 $request = new Fancourier\Request\PrintAwb();
 $request
-	->setPdf(false)
-	->setAwb('2150900120086');
+    ->setPdf(false)
+    ->setAwb('2150900120086');
 ```
 Response
 ```php
@@ -329,7 +329,7 @@ if ($response->isOk()) {
     echo $response->getData();
 } else {
     var_dump($response->getErrorMessage());
-	print_r($response->getAllErrors());
+    print_r($response->getAllErrors());
 }
 ```
 

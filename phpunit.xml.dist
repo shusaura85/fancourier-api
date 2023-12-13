@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Fancourier Api TestSuite">
+        <testsuite name="Fancourier Api 2 TestSuite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

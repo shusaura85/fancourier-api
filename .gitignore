@@ -6,3 +6,4 @@ composer.lock
 .bak
 .phpunit.result.cache
 build/
+ 
