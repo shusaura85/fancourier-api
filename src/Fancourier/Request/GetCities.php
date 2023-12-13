@@ -6,7 +6,10 @@ use Fancourier\Response\GetCities as GetCitiesResponse;
 
 class GetCities extends AbstractRequest implements RequestInterface
 {
-    protected $verb = 'export_distante_integrat.php';
+    protected $gateway = 'reports/localities';
+	protected $method = 'GET';
+	
+    protected $county = '';
 
     public function __construct()
     {
@@ -16,6 +19,31 @@ class GetCities extends AbstractRequest implements RequestInterface
 
     public function pack()
     {
-        return [];
+		$arr = [];
+		if ($this->county != '')
+			{
+			$arr['county'] = $this->county;
+			}
+		
+		return $arr;
     }
+
+    /**
+     * @return string
+     */
+    public function getCounty()
+    {
+        return $this->county;
+    }
+
+    /**
+     * @param string $county
+     * @return GetCities
+     */
+    public function setCounty($county)
+    {
+        $this->county = $county;
+        return $this;
+    }
+
 }

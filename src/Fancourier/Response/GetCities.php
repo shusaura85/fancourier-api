@@ -2,42 +2,62 @@
 
 namespace Fancourier\Response;
 
+use Fancourier\Objects\City;
+
 class GetCities extends Generic implements ResponseInterface
 {
-    public function setBody($body)
+	protected $result;
+	
+    public function setData($datastr)
     {
-        if (empty($body)) {
-            $this->setErrorMessage("Empty response");
-            $this->setErrorCode(-1);
-            return $this;
-        }
+		$response_json = json_decode($datastr, true);
+		
+		if (json_last_error() === JSON_ERROR_NONE)
+			{
+			$this->result = [];
+			
+			if (isset($response_json['status']) && ($response_json['status'] == 'success'))
+				{
+				parent::setData($response_json['data']);
+				
+				foreach ($response_json['data'] as $rd)
+					{
+					$this->result[ $rd['id'] ] = new City($rd['id'], $rd['name'], $rd['county'], $rd['agency'], $rd['exteriorKm']);
+					}
+				}
+			else
+				{
+				$this->setErrorMessage($response_json['message']);
+				$this->setErrorCode(-1);
+				}
+			}
+		else
+			{
+			$this->setErrorMessage($datastr);
+			$this->setErrorCode(-1);
+			}
 
-        $body = str_replace("\r\n", "\n", $body);
-        $body = str_replace("\r", "\n", $body);
-        $body = explode("\n", $body);
-        $body = array_filter($body);
-
-        $keys = $data = [];
-        $header = str_getcsv($body[0]);
-        unset($body[0]);
-
-        foreach ($header as $item) {
-            $keys[] = trim(preg_replace("/[^a-z0-9]+/", '_', strtolower($item)), '_');
-        }
-
-        foreach ($body as $item) {
-            $item = str_getcsv($item);
-            $row = [];
-            foreach ($keys as $i => $key) {
-                $row[$key] = $item[$i] ?? null;
-            }
-
-            $data[] = $row;
-        }
-
-
-        parent::setBody($data);
 
         return $this;
     }
+	
+	public function getAll(): array
+		{
+		return $this->result ?? [];
+		}
+	
+	public function getCity($cityname): City|false
+		{
+		$return = false;
+		foreach ($this->result as $cid=>$cv)
+			{
+			if ( strtolower($cv->getName()) == strtolower(trim($cityname)) )
+				{
+				$return = $this->result[ $cid ];
+				break;
+				}
+			}
+		
+		return $return;
+		}
 }

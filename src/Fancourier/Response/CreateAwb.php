@@ -2,32 +2,119 @@
 
 namespace Fancourier\Response;
 
+use \Fancourier\Objects\AwbIntern;
+
 class CreateAwb extends Generic implements ResponseInterface
 {
-    public function setBody($body)
+	protected $result;
+	protected $awbList;
+	
+    public function setData($datastr)
     {
-        if (empty($body)) {
-            $this->setErrorMessage("Empty response");
-            $this->setErrorCode(-1);
-            return $this;
-        }
+		try {
+			$response_json = json_decode($datastr, true);
+			}
+		catch (\TypeError $e)
+			{ }
+		
+		if (json_last_error() === JSON_ERROR_NONE)
+			{
+			$this->result = [];
+			
+			if (isset($response_json['response']))
+				{
+				parent::setData($response_json['response']);
+/*
+{
+"response": [
+		{
+			"awbNumber":2332300120218,
+			"tariff":30.53,
+			"packages":1,
+			"letter":"B",
+			"routingCode":"0200",
+			"office":"Bucuresti",
+			"visualCode":"02-01-01",
+			"errors":null
+		},
+		{
+			"awbNumber":2332300120219,
+			"tariff":32.71,
+			"packages":1,
+			"letter":"B",
+			"routingCode":"0200",
+			"office":"Bucuresti",
+			"visualCode":"02-01-01",
+			"errors":null
+		}
+	]
+}
 
-        $body = str_getcsv($body);
-        if (count($body) == 1) {
-            $this->setErrorMessage($body[0]);
-            $this->setErrorCode(0);
-            return $this;
-        }
+{"response":[
+{
+	"awbNumber":null,
+	"success":false,
+	"errors": {
+			"info.parcels":"At least one envelope or parcel is required"
+			}
+},
 
-        if ($body[1] && !empty($body[2])) {
-            parent::setBody($body[2]);
-            return $this;
-        }
 
-        $message = trim(($body[2] ?? '') . (!empty($body[3]) ? " ({$body[3]})" : ""));
-        $this->setErrorMessage($message);
-        $this->setErrorCode(-2);
+*/
+				
+				foreach ($response_json['response'] as $result)
+					{
+					$this->result[] = $result;
+					}
+				}
+			else
+				{
+				$this->setErrorMessage($response_json['message']);
+				$this->setErrorCode(-1);
+				}
+			}
+		else
+			{
+			$this->setErrorMessage($datastr);
+			$this->setErrorCode(-1);
+			}
+
 
         return $this;
     }
+	
+	/*
+	* @param array[AwbIntern] $awbList
+	*/
+	public function setAwbList(array $awbList)
+		{
+		// check list
+		foreach ($awbList as $awb)
+			{
+			if (!($awb instanceof AwbIntern))
+				{
+				return false;
+				}
+			}
+		
+		$this->awbList = $awbList;
+		return true;
+		}
+	
+	public function getAll(): array
+		{
+		print_r($this->result);
+		if (empty($this->result))
+			{
+			return [];
+			}
+		
+		foreach ($this->result as $idx=>$result)
+			{
+			$this->awbList[ $idx ]->setResult($result);
+			}
+		
+		return $this->awbList;
+		}
+	
 }

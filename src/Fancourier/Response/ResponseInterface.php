@@ -7,6 +7,6 @@ interface ResponseInterface
     public function setErrorCode($errorCode);
     public function getErrorMessage();
     public function setErrorMessage($errorMessage);
-    public function getBody();
-    public function setBody($body);
+    public function getData();
+    public function setData($data);
 }

@@ -2,15 +2,18 @@
 
 namespace Fancourier\Request;
 
-use Fancourier\Response\GetRates as GetRatesResponse;
+use Fancourier\Response\GetCosts as GetCostsResponse;
 
-class GetRates extends AbstractRequest implements RequestInterface
+class GetCosts extends AbstractRequest implements RequestInterface
 {
-    protected $verb = 'tarif.php';
+    protected $gateway = 'reports/awb/internal-tariff';
+	protected $method = 'GET';
 
-    private $paymentType = self::TYPE_RECIPIENT;
+    private $paymentType = self::TYPE_RECIPIENT;	// info['payment']
     private $city;
-    private $region;
+    private $county;
+    private $senderCity;
+    private $senderCounty;
     private $envelopes = 0;
     private $parcels = 0;
     private $weight;
@@ -18,33 +21,75 @@ class GetRates extends AbstractRequest implements RequestInterface
     private $width = 0;
     private $height = 0;
     private $declaredValue;
-    private $reimbursementPaymentType = self::TYPE_RECIPIENT;
+//    private $reimbursementPaymentType = self::TYPE_RECIPIENT;
     private $options = '';
-    private $service = self::SERVICE_STANDARD;
+    private $service = 'Standard';
 
     public function __construct()
     {
         parent::__construct();
-        $this->response = new GetRatesResponse();
+        $this->response = new GetCostsResponse();
     }
 
     public function pack()
     {
-        return [
-            'plata_la' => $this->paymentType,
-            'localitate_dest' => $this->city,
-            'judet_dest' => $this->region,
-            'plicuri' => $this->envelopes,
-            'colete' => $this->parcels,
-            'greutate' => $this->weight,
-            'lungime' => $this->length,
-            'latime' => $this->width,
-            'inaltime' => $this->height,
-            'val_decl' => $this->declaredValue,
-            'plata_ramburs' => $this->reimbursementPaymentType,
-            'options' => $this->packOptions($this->getOptions()),
-            'serviciu' => $this->service,
-        ];
+        $arr = [
+			'clientId'	=> $this->auth->getClientId(),
+			'info'		=> [
+							'service'	=>	$this->service,
+							'payment'	=>	$this->paymentType,
+							'weight'	=>	$this->weight,
+							'packages'	=>	[],
+						],
+			'recipient'	=> [
+						'locality'	=> $this->city,
+						'county'	=> $this->county
+						],
+			];
+		
+		if ($this->options != '')
+			{
+			$arr['options'] = $this->options;
+			}
+		
+		if ( ($this->width > 0) && ($this->height > 0) && ($this->length > 0) )
+			{
+			$arr['info']['dimensions'] = [
+										'height'	=> $this->height,
+										'width'		=> $this->width,
+										'length'	=> $this->length,
+										];
+			}
+		
+		if ($this->envelopes > 0)
+			{
+			$arr['info']['packages']['envelope'] = $this->envelopes;
+			}
+		
+		if ($this->parcels > 0)
+			{
+			$arr['info']['packages']['parcel'] = $this->parcels;
+			}
+		
+		if (!empty($this->declaredValue))
+			{
+			$arr['info']['declaredValue'] = $this->declaredValue;
+			}
+			
+		if (!empty($this->senderCity) || !empty($this->senderCounty))
+			{
+			$arr['sender'] = [];
+			}
+		if (!empty($this->senderCity))
+			{
+			$arr['sender']['locality'] = $this->senderCity;
+			}
+		if (!empty($this->senderCounty))
+			{
+			$arr['sender']['county'] = $this->senderCounty;
+			}
+		
+		return $arr;
     }
 
     /**
@@ -90,18 +135,54 @@ class GetRates extends AbstractRequest implements RequestInterface
     /**
      * @return mixed
      */
-    public function getRegion()
+    public function getCounty()
     {
-        return $this->region;
+        return $this->county;
     }
 
     /**
-     * @param mixed $region
+     * @param mixed $county
      * @return GetRates
      */
-    public function setRegion($region)
+    public function setCounty($county)
     {
-        $this->region = $region;
+        $this->county = $county;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderCity()
+    {
+        return $this->senderCity;
+    }
+
+    /**
+     * @param mixed $city
+     * @return GetRates
+     */
+    public function setSenderCity($city)
+    {
+        $this->senderCity = $city;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderCounty()
+    {
+        return $this->senderCounty;
+    }
+
+    /**
+     * @param mixed $county
+     * @return GetRates
+     */
+    public function setSenderCounty($county)
+    {
+        $this->senderCounty = $county;
         return $this;
     }
 
@@ -228,28 +309,6 @@ class GetRates extends AbstractRequest implements RequestInterface
     public function setDeclaredValue($declaredValue)
     {
         $this->declaredValue = $declaredValue;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReimbursementPaymentType()
-    {
-        return $this->reimbursementPaymentType;
-    }
-
-    /**
-     * @param string $type
-     * @return GetRates
-     */
-    public function setReimbursementPaymentType($type)
-    {
-        if ($type != self::TYPE_RECIPIENT || $type != self::TYPE_SENDER) {
-            throw new \InvalidArgumentException("Invalid reimbursementPaymentType value");
-        }
-
-        $this->reimbursementPaymentType = $type;
         return $this;
     }
 

@@ -2,60 +2,88 @@
 
 namespace Fancourier\Request;
 
+use Fancourier\Response\TrackAwb as TrackAwbResponse;
+
+/**
+ * Class TrackAwb
+ * @package Fancourier\Request
+ * @SuppressWarnings(PHPMD)
+ */
 class TrackAwb extends AbstractRequest implements RequestInterface
 {
-    const MODE_LAST_STATUS = 1;
-    const MODE_LAST = 2;
-    const MODE_FULL = 3;
-    const MODE_RECEIPT = 4;
-    const MODE_JSON = 5;
+	protected $gateway = 'reports/awb/tracking';
+	protected $method = 'GET';
+	
+	protected $awbList = [];
+	protected $language = '';
 
-    protected $verb = 'awb_tracking_integrat.php';
-
-    protected $awb;
-    protected $displayMode = self::MODE_FULL;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->response = new TrackAwbResponse();
+    }
 
     public function pack()
     {
-        return [
-            'AWB' => $this->awb,
-            'display_mode' => $this->displayMode,
-        ];
+		$arr = [
+				"clientId" => $this->auth->getClientId(), //obligatoriu 
+				"awb" => [] // shipments
+				
+			];
+		
+		foreach ($this->awbList as $awb)
+			{
+			$arr['awb'][] = $awb;
+			}
+		
+		if ($this->language != '')
+			{
+			$arr['language'] = $this->language;
+			}
+		
+		return $arr;
+	
     }
+	
+	public function addAwb(string $awb)
+	{
+		$this->awbList[] = $awb;
+		return $this;
+	}
+	
+	public function setAwb(string $awb)
+	{
+		return $this->addAwb($awb);
+	}
+	
+	
+	public function resetAwbs()
+	{
+		$this->awbList = [];
+		return $this;
+	}
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAwb()
-    {
-        return $this->awb;
-    }
-
+	public function getLanguage()
+	{
+		return $this->language ?? '';
+	}
+	
     /**
-     * @param mixed $awb
+     * @param string $language
      * @return TrackAwb
      */
-    public function setAwb($awb)
+    public function setLanguage($language)
     {
-        $this->awb = $awb;
+		$language = trim(strtolower($language));
+		if (in_array($language, ['ro', 'en']))
+			{
+			$this->language = $language;
+			}
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDisplayMode()
-    {
-        return $this->displayMode;
-    }
 
-    /**
-     * @param mixed $displayMode
-     * @return TrackAwb
-     */
-    public function setDisplayMode($displayMode)
-    {
-        $this->displayMode = $displayMode;
-        return $this;
-    }
 }

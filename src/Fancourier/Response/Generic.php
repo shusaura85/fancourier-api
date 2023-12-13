@@ -6,7 +6,7 @@ class Generic implements ResponseInterface
 {
     protected $errorCode;
     protected $errorMessage;
-    protected $body;
+    protected $data;
 
     /**
      * @return mixed
@@ -47,18 +47,18 @@ class Generic implements ResponseInterface
     /**
      * @return mixed
      */
-    public function getBody()
+    public function getData()
     {
-        return $this->body;
+        return $this->data;
     }
 
     /**
-     * @param mixed $body
+     * @param mixed $data
      * @return Generic
      */
-    public function setBody($body)
+    public function setData($data)
     {
-        $this->body = $body;
+        $this->data = $data;
         return $this;
     }
 

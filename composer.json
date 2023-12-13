@@ -1,12 +1,8 @@
 {
     "name": "shusaura85/fancourier-api",
-    "description": "Consumer for FanCourier API",
+    "description": "Library for FanCourier API v2.0",
 	"type": "library",
     "authors": [
-        {
-            "name": "Cristian Nicolescu",
-            "email": "cristi@mandagreen.com"
-        },
         {
             "name": "Shu Saura",
             "role": "Developer"
@@ -16,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.1",
         "ext-curl": "*",
         "ext-json": "*"
     },

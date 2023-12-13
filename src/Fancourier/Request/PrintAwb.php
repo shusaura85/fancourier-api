@@ -4,21 +4,23 @@ namespace Fancourier\Request;
 
 class PrintAwb extends AbstractRequest implements RequestInterface
 {
-    protected $verb = 'view_awb_integrat_pdf.php';
+    protected $gateway = 'awb/label';
+	protected $method = 'GET';
 
-    private $awb;
-    private $pageSize = 'A6';
-    private $label;
+    private $awbs = [];
+    private $pdf = true;
     private $lang = 'ro';
 
     public function pack()
     {
-        return [
-            'nr' => $this->awb,
-            'page' => $this->pageSize,
-            'label' => $this->label,
+        $arr = [
+			'clientId'	=> $this->auth->getClientId(),
+            'awbs' => $this->awbs,
+            'pdf' => ($this->pdf ? 1 : 0),
             'language' => $this->lang,
         ];
+		
+		return $arr;
     }
 
     /**
@@ -26,57 +28,43 @@ class PrintAwb extends AbstractRequest implements RequestInterface
      */
     public function getAwb()
     {
-        return $this->awb;
+        return $this->awbs;
     }
 
     /**
-     * @param mixed $awb
+     * @param string $awb
      * @return PrintAwb
      */
     public function setAwb($awb)
     {
-        $this->awb = $awb;
-        return $this;
+        return $this->addAwb($awb);
     }
 
     /**
-     * @return string
-     */
-    public function getPageSize()
-    {
-        return $this->pageSize;
-    }
-
-    /**
-     * @param string $pageSize
+     * @param string $awb
      * @return PrintAwb
      */
-    public function setPageSize($pageSize)
+    public function addAwb($awb)
     {
-        $pageSize = strtoupper($pageSize);
-        if (!in_array($pageSize, ['A4', 'A5', 'A6'])) {
-            $pageSize = 'A6';
-        }
-
-        $this->pageSize = $pageSize;
+        $this->awbs[] = $awb;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getLabel()
+    public function getPdf()
     {
-        return $this->label;
+        return $this->pdf;
     }
 
     /**
-     * @param mixed $label
+     * @param bool $active
      * @return PrintAwb
      */
-    public function setLabel($label)
+    public function setPdf($active = true)
     {
-        $this->label = $label;
+        $this->pdf = $active;
         return $this;
     }
 
