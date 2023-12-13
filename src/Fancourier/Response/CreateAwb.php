@@ -66,6 +66,13 @@ class CreateAwb extends Generic implements ResponseInterface
 					{
 					$this->result[] = $result;
 					}
+				
+				// update awbs
+				foreach ($this->result as $idx=>$result)
+					{
+					$this->awbList[ $idx ]->setResult($result);
+					}
+
 				}
 			else
 				{
@@ -103,15 +110,9 @@ class CreateAwb extends Generic implements ResponseInterface
 	
 	public function getAll(): array
 		{
-		print_r($this->result);
 		if (empty($this->result))
 			{
 			return [];
-			}
-		
-		foreach ($this->result as $idx=>$result)
-			{
-			$this->awbList[ $idx ]->setResult($result);
 			}
 		
 		return $this->awbList;
