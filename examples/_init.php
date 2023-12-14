@@ -1,6 +1,6 @@
 <?php
 // load the class autoloader. If you're using Composer, you don't need to use this autoloader
-require '../autoload.php';
+require '../src/autoload.php';
 
 // the bearer token has a life time of 24 hours so we delete it if it's too old to get a new one
 if ( is_file('./examples_token.txt') && (filemtime('./examples_token.txt') < time()-86000) )
