@@ -160,7 +160,8 @@ if ($response->isOk()) {
 
 ### Create AWB in bulk
 
-Unlike the previous version, there is no longer a CreateAwbBulk request. Simply create as many AWBIntern objects and add them to the request
+Unlike the previous version, there is no longer a CreateAwbBulk request. Simply create as many AWBIntern objects and add them to the request  
+  
 Request
 ```php
 $request = new Fancourier\Request\CreateAwb();
