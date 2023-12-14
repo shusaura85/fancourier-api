@@ -74,17 +74,17 @@ class Pudo
 		return $this->address ?? '';
 		}
 	
-	public function getSchedule(): array|string
+	public function getSchedule() //: array|string
 		{
 		return $this->schedule ?? '';
 		}
 	
-	public function getDrawer(): array|string
+	public function getDrawer() //: array|string
 		{
 		return $this->drawer ?? '';
 		}
 	
-	public function getPhones(): array|string
+	public function getPhones() //: array|string
 		{
 		return $this->phones ?? '';
 		}

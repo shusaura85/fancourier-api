@@ -27,9 +27,10 @@ All requests have the method `getData()` that returns the unprocessed response o
 ## Installation
 ### Requirements
 
-* PHP >= 8.1
+* PHP >= 7.0
 
-**INFO** It can work with previous versions of PHP (not recommended) if you strip the type and return type declarations from the library  
+**NOTE** At the moment it's designed to work with PHP 7.0 and newer.  
+However, the plan is to add type and return type declarations for all functions that will push the requirements to PHP 8.1 at the minimum  
 
 ### Composer
 Require the package via composer

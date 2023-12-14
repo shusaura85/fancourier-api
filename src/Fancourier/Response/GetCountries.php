@@ -47,7 +47,7 @@ class GetCountries extends Generic implements ResponseInterface
 		}
 	
 		
-	public function getCountry($name): Country|false
+	public function getCountry($name) //: Country|false
 		{
 		return $this->result[ $name ] ?? false;
 		}

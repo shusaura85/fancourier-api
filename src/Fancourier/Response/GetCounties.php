@@ -47,7 +47,7 @@ class GetCounties extends Generic implements ResponseInterface
 		}
 	
 		
-	public function getCounty($name): County|false
+	public function getCounty($name) //: County|false
 		{
 		return $this->result[ $name ] ?? false;
 		}

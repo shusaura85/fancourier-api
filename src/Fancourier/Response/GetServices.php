@@ -52,7 +52,7 @@ class GetServices extends Generic implements ResponseInterface
 		return isset($this->result[ $name ]);
 		}
 		
-	public function getService($name): Service|false
+	public function getService($name) //: Service|false
 		{
 		return $this->result[ $name ] ?? false;
 		}

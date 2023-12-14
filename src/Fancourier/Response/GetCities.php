@@ -46,7 +46,7 @@ class GetCities extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function getCity($cityname): City|false
+	public function getCity($cityname) //: City|false
 		{
 		$return = false;
 		foreach ($this->result as $cid=>$cv)

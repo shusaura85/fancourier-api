@@ -46,7 +46,7 @@ class GetAwbEvents extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function getEvent($eventId): AwbEvent|false
+	public function getEvent($eventId) //: AwbEvent|false
 		{
 		$return = false;
 		if (isset($this->result[ $eventId ]))

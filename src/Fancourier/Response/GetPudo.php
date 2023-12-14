@@ -47,7 +47,7 @@ class GetPudo extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function get($pudoId = null): Pudo|false
+	public function get($pudoId = null) //: Pudo|false
 		{
 		if (is_null($pudoId))
 			{

@@ -47,7 +47,7 @@ class GetCourierOrderEvents extends Generic implements ResponseInterface
 		}
 	
 		
-	public function getEvent($courierEventId): CourierOrderEvent|false
+	public function getEvent($courierEventId) //: CourierOrderEvent|false
 		{
 		return $this->result[ $courierEventId ] ?? false;
 		}

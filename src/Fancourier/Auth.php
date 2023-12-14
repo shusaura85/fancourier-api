@@ -5,26 +5,25 @@ namespace Fancourier;
 use Fancourier\Fancourier;
 use Fancourier\Client;
 
-class Auth
-{
-    private $clientId;
-    private $username;
-    private $password;
+class Auth {
+	private $clientId;
+	private $username;
+	private $password;
 
 	private $btoken = '';
 	private $btoken_message = '';
 
 	protected $gateway = 'login';
 
-    public function __construct($clientId, $username, $password, $token = '')
-    {
-        $this->clientId = $clientId;
-        $this->username = $username;
-        $this->password = $password;
+	public function __construct($clientId, $username, $password, $token = '')
+		{
+		$this->clientId = $clientId;
+		$this->username = $username;
+		$this->password = $password;
 
 		$this->btoken   = $token;
 		// if the token is empty, it will automatically retrieve it when performing a request
-    }
+		}
 
 	public function getClientId()		{	return $this->clientId;	}
 	public function getClientUsername()	{	return $this->username;	}

@@ -51,7 +51,7 @@ class GetServiceOptions extends Generic implements ResponseInterface
 		return isset($this->result[ $code ]);
 		}
 		
-	public function getOption($code): ServiceOption|false
+	public function getOption($code) //: ServiceOption|false
 		{
 		return $this->result[ $code ] ?? false;
 		}

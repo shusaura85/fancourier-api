@@ -55,7 +55,7 @@ class GetBankTransfers extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function get($position = 0): BankTransfer|false;
+	public function get($position = 0) //: BankTransfer|false;
 		{
 		return $this->result[$position] ?? false;
 		}

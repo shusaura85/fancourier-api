@@ -2,17 +2,17 @@
 namespace Fancourier;
 
 class Client {
-	private \CurlHandle|false $curl;
+	private $curl; // \CurlHandle|false
 
-	private string $error		= '';
-	private int $error_no		= 0;
+	private $error		= '';
+	private $error_no		= 0;
 
-	private bool $is_put		= false;
-	private bool $is_delete		= false;
+	private $is_put		= false;
+	private $is_delete		= false;
 
-	private string $useragent	= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0';
+	private $useragent	= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0';
 
-	private array $headers		= [];	// custom headers
+	private $headers		= [];	// custom headers
 
 	public function __construct(?string $useragent = null)
 		{
@@ -25,7 +25,7 @@ class Client {
 	/*
 	* Init curl and set common options. Called by get/post functions
 	*/
-	private function init(int $con_timeout = 60, int $timeout = 600): void
+	private function init(int $con_timeout = 60, int $timeout = 600)
 		{
 		$this->curl = curl_init();
 		// init default data
@@ -42,7 +42,7 @@ class Client {
 		$this->set_custom_headers();
 		}
 
-	private function set_custom_headers(): void
+	private function set_custom_headers()
 		{
 		if (count($this->headers) > 0)
 			{
@@ -56,7 +56,7 @@ class Client {
 			}
 		}
 
-	private function close(): void
+	private function close()
 		{
 		curl_close($this->curl);
 		// reset put/delete requests
@@ -99,7 +99,7 @@ class Client {
 	Use this static function to prepare a file for posting it using cURL
 	Pass the resulting object of this function inside the $data array of the post function
 	*/
-	public static function prepare_file(string $file): \CURLFile
+	public static function prepare_file(string $file) //: \CURLFile
 		{
 		$mime = mime_content_type($file);
 		$info = pathinfo($file);
@@ -112,13 +112,13 @@ class Client {
 	Use this static function to prepare a string for posting it using cURL to a file field
 	Pass the resulting object of this function inside the $data array of the post function
 	*/
-	public static function prepare_file_string(string $data, string $postname, string $mime = 'text/plain'): \CURLStringFile
+	public static function prepare_file_string(string $data, string $postname, string $mime = 'text/plain') //: \CURLStringFile
 		{
 		return new \CURLStringFile($data, $postname, $mime);
 		}
 
 
-	public function post(string $url, array $data, int $con_timeout = 60, int $timeout = 600): string|false
+	public function post(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
 		{
 		$this->init($con_timeout, $timeout);
 
@@ -151,7 +151,7 @@ class Client {
 		}
 	
 	// curl doesn't like multilevel arrays in CURLOPT_POSTFIELDS, so we have to manually build the data with http_build_query
-	public function post_ma(string $url, array $data, int $con_timeout = 60, int $timeout = 600): string|false
+	public function post_ma(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
 		{
 		$this->init($con_timeout, $timeout);
 
@@ -191,7 +191,7 @@ class Client {
 		return false;
 		}
 	
-	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600): array|false
+	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
 		{
 		$this->init($con_timeout, $timeout);
 
@@ -240,7 +240,7 @@ class Client {
 		return false;
 		}
 
-	private function set_error(string $error): self
+	private function set_error(string $error)
 		{
 		$this->error = $error;
 		return $this;
@@ -251,7 +251,7 @@ class Client {
 		return $this->error;
 		}
 
-	private function set_error_no(int $errno): self
+	private function set_error_no(int $errno)
 		{
 		$this->error_no = $errno;
 		return $this;
@@ -265,7 +265,7 @@ class Client {
 	/*
 	* Add a custom header to curl
 	*/
-	public function headers_add($name, $value): self
+	public function headers_add($name, $value)
 		{
 		$this->headers[ $name ] = $value;
 		return $this;
@@ -274,7 +274,7 @@ class Client {
 	/*
 	* Remove a custom header from curl requests
 	*/
-	public function headers_delete($name): self
+	public function headers_delete($name)
 		{
 		if (array_key_exists($name, $this->headers))
 			{
@@ -287,7 +287,7 @@ class Client {
 	* Clear all custom headers from curl
 	*/
 
-	public function headers_reset(): self
+	public function headers_reset()
 		{
 		$this->headers = [];
 		return $this;

@@ -54,7 +54,7 @@ class GetCourierOrders extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function get($orderId): CourierOrder|false
+	public function get($orderId) //: CourierOrder|false
 		{
 		return $this->result[$orderId] ?? false;
 		}

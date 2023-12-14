@@ -47,7 +47,7 @@ class TrackCourierOrder extends Generic implements ResponseInterface
 		}
 	
 		
-	public function getOrder($orderId): CourierOrderTracker|false
+	public function getOrder($orderId) //: CourierOrderTracker|false
 		{
 		return $this->result[ $orderId ] ?? false;
 		}

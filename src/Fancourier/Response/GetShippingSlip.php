@@ -55,7 +55,7 @@ class GetShippingSlip extends Generic implements ResponseInterface
 		return $this->result ?? [];
 		}
 	
-	public function get($position): ShippingSlip|false
+	public function get($position) //: ShippingSlip|false
 		{
 		return $this->result[$position] ?? false;
 		}

@@ -280,7 +280,7 @@ class Fancourier
      * @param GetBranches $request
      * @return \Fancourier\Response\GetBranches
      */
-    public function getBranches($request)
+    public function getBranches(GetBranches $request)
     {
         return $this->send($request);
     }
