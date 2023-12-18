@@ -64,7 +64,7 @@ class Client {
 		$this->is_delete = false;
 		}
 
-	public function get(string $url, int $con_timeout = 60, int $timeout = 600): string|false
+	public function get(string $url, int $con_timeout = 60, int $timeout = 600)//: string|false
 		{
 		//echo '<div style="font-family:monospace; padding: 5px; border: 1px solid red; margin: 5px">'.$url.'</div>';
 		$this->init($con_timeout, $timeout);
@@ -191,7 +191,7 @@ class Client {
 		return false;
 		}
 	
-	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
+	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600)//: string|false
 		{
 		$this->init($con_timeout, $timeout);
 
@@ -213,7 +213,6 @@ class Client {
 		$response = curl_exec($this->curl);
 		if(empty($response)||is_null($response))
 			{
-			die(curl_error($this->curl));
 			$this->close();
 			}
 
