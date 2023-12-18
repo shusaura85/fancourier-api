@@ -13,6 +13,9 @@ class Auth {
 	private $btoken = '';
 	private $btoken_message = '';
 
+	protected $verifyHost = true;
+	protected $verifyPeer = true;
+
 	protected $gateway = 'login';
 
 	public function __construct($clientId, $username, $password, $token = '')
@@ -55,6 +58,7 @@ class Auth {
 	private function retrieve_token()
 		{
 		$client = new Client();
+		$client->set_verify($this->verifyHost, $this->verifyPeer);
 		$url = Fancourier::API_URL.$this->gateway;
 
 		$data = [
@@ -86,5 +90,12 @@ class Auth {
 
 		return ($this->btoken !== '');
 		}
+
+
+    public function setVerify($host = true, $peer = true)
+    {
+        $this->verifyHost = $host;
+        $this->verifyPeer = $peer;
+    }
 
 }

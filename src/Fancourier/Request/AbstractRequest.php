@@ -41,6 +41,12 @@ abstract class AbstractRequest implements RequestInterface
         return $this;
     }
 
+	public function setVerify($verifyHost = true, $verifyPeer = true)
+	{
+		$this->client->set_verify($verifyHost, $verifyPeer);
+		return $this;
+	}
+
     /**
      * @return Generic
      */

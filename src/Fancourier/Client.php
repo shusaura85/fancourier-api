@@ -5,14 +5,17 @@ class Client {
 	private $curl; // \CurlHandle|false
 
 	private $error		= '';
-	private $error_no		= 0;
+	private $error_no	= 0;
 
 	private $is_put		= false;
-	private $is_delete		= false;
+	private $is_delete	= false;
+	
+	private $verify_host = true;
+	private $verify_peer = true;
 
 	private $useragent	= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0';
 
-	private $headers		= [];	// custom headers
+	private $headers	= [];	// custom headers
 
 	public function __construct(?string $useragent = null)
 		{
@@ -34,8 +37,14 @@ class Client {
 		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $con_timeout);
 		curl_setopt($this->curl, CURLOPT_TIMEOUT, $timeout);
 
-		curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, 0);
+		if (!$this->verify_host)
+			{
+			curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, 0);
+			}
+		if (!$this->verify_peer)
+			{
+			curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, 0);
+			}
 
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
 
@@ -306,6 +315,14 @@ class Client {
 		{
 		$this->is_delete = $enabled;
 		$this->is_put = false;
+		return $this;
+		}
+
+	/* if you need to skip host/peer validation */
+	public function set_verify($host = true, $peer = true)
+		{
+		$this->verify_host = $host;
+		$this->verify_peer = $peer;
 		return $this;
 		}
 

@@ -16,6 +16,9 @@ $fan = Fancourier\Fancourier::testInstance($token);
 // to create a normal instance use this:
 // $fan = new Fancourier\Fancourier($clientId, $username, $password, $token);
 
+// disable curl's certificate validation (do it only if needed, in the examples it's activated by default in case the examples are run from local machine)
+$fan->setVerify(false, false);
+
 // if you don't cache the token (not recommended), you don't need to call the getToken() function as it's called automatically when needed
 if ($token == '')
 	{

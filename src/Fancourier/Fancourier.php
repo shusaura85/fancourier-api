@@ -39,16 +39,31 @@ class Fancourier
     const TEST_USERNAME = 'clienttest';
     const TEST_PASSWORD = 'testing';
 
-	const API_URL			= 'https://api.fancourier.ro/';
-	
+    const API_URL			= 'https://api.fancourier.ro/';
+
     /** @var Auth */
     protected $auth;
+
+    protected $verifyHost = true;
+    protected $verifyPeer = true;
 
     public function __construct($clientId, $username, $password, $bearer_token = '')
     {
         $this->auth = new Auth($clientId, $username, $password, $bearer_token);
     }
 
+    /**
+     * Use this if you need to skip host/peer verification
+     * @param bool $verifyHost
+     * @param bool $verifyPeer
+     */
+    public function setVerify($verifyHost = true, $verifyPeer = true)
+    {
+        $this->verifyHost = $verifyHost;
+        $this->verifyPeer = $verifyPeer;
+        $this->auth->setVerify($verifyHost, $verifyPeer);
+        return $this;
+    }
     /**
      * @param CreateAwb $request
      * @return \Fancourier\Response\CreateAwb
@@ -293,6 +308,7 @@ class Fancourier
     {
         return $request
             ->authenticate($this->auth)
+            ->setVerify($this->verifyHost, $this->verifyPeer)
             ->send();
     }
 
