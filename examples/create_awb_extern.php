@@ -21,7 +21,7 @@ $awb
 	->setIban('RO53RZBR0000060009520959')
 	->setParcels(1)
 	->setWeight(1)	// in kg
-	->setCoD(199.99)
+	->setReimbursement(199.99)
 	->setCurrency('BGN')
 	->setDeclaredValue(1000)
 	->setSizes(10,5,1) // in cm // or use setLength(), setHeight(), setWidth()
@@ -114,7 +114,7 @@ All set* functions here have an equivalent get* function
 ->setHeight($height)
 ->setLength($length)
 ->setWidth($width)
-->setCoD($cod)				// cash on delivery (ramburs)
+->setReimbursement($cod)				// cash on delivery (ramburs)
 ->setCurrency($currency)	// most likely not used in the api. field is set if you read the awb information, but doesn't appear to do anything when sent
 ->setDeclaredValue($declaredValue)
 ->setPaymentType($paymentType)

@@ -48,7 +48,7 @@ class FancourierTest extends TestCase
         $awb
             ->setParcels(1)
             ->setWeight(2)
-            ->setCoD(125)
+            ->setReimbursement(125)
             ->setDeclaredValue(125)
             ->setSizes(10,5,1) // in cm // or use setLength(), setHeight(), setWidth()
             ->setNotes('testing notes')

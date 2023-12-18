@@ -75,7 +75,7 @@ The ShippingSlip object has the following functions:
 ->getLength()
 ->getPayment()
 ->getReturnPayment()
-->getCoD()
+->getReimbursement()
 ->getDeclaredValue()
 ->getNotes()
 ->getContents()

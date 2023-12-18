@@ -230,18 +230,18 @@ class AwbIntern
     /**
      * @return mixed
      */
-    public function getCoD()
+    public function getReimbursement()
     {
         return $this->CoD;
     }
 
     /**
-     * @param mixed $cod
+     * @param mixed $cashondelivery
      * @return AwbIntern
      */
-    public function setCoD($cod)
+    public function setReimbursement($cashondelivery)
     {
-        $this->CoD = $cod;
+        $this->CoD = $cashondelivery;
         return $this;
     }
 	

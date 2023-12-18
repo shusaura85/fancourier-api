@@ -119,7 +119,7 @@ class ShippingSlip
 		return $this->returnPayment;
 		}
 	
-	public function getCoD(): float
+	public function getReimbursement(): float
 		{
 		return $this->cod;
 		}

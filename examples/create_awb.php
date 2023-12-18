@@ -9,7 +9,7 @@ $awb
 	->setPaymentType(Fancourier\Request\CreateAwb::TYPE_SENDER)				// expeditor		(TYPE_RECIPIENT - destinatar)
 	->setParcels(1)
 	->setWeight(1)	// in kg
-	->setCoD(199.99) // suma de incasat
+	->setReimbursement(199.99) // suma de incasat
 	->setDeclaredValue(1000)
 	->setSizes(10,5,1) // in cm // or use setLength(), setHeight(), setWidth()
 	->setNotes('testing notes')
@@ -82,7 +82,7 @@ All set* functions here have an equivalent get* function
 ->setEnvelopes($envelopes)
 ->setParcels($parcels)
 ->setWeight($weight)
-->setCoD($cod)				// cash on delivery (ramburs)
+->setReimbursement($cod)				// cash on delivery (ramburs)
 ->setCurrency($currency)	// most likely not used in the api. field is set if you read the awb information, but doesn't appear to do anything when sent
 ->setDeclaredValue($declaredValue)
 ->setPaymentType($paymentType)
