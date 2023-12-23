@@ -115,7 +115,7 @@ $awb
     ->setPaymentType(Fancourier\Request\CreateAwb::TYPE_SENDER)
     ->setParcels(1)
     ->setWeight(1)    // in kg
-    ->setCoD(199.99) // suma de incasat
+    ->setReimbursement(199.99) // suma de incasat
     ->setDeclaredValue(1000)
     ->setSizes(10,5,1) // in cm
     ->setNotes('testing notes')
