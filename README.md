@@ -38,9 +38,6 @@ Require the package via composer
 composer require shusaura85/fancourier-api
 ```
 
-*NOTE* At the moment, if you use composer, you will receive the old version of the library (version 1.2.1) that works with the old API that will stop working on March 1st 2024.  
-If you want to use the new version, download the code and load it manually as specified below  
-
 ### Manual
 If used without composer, you will need to manually require the `autoload.php` file
 ```php
