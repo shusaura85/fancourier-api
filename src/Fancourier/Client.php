@@ -164,7 +164,7 @@ class Client {
 		{
 		$this->init($con_timeout, $timeout);
 
-		$datastr = http_build_query($data);
+		$datastr = http_build_query($data, '', '&');
 		$datastr = str_replace(["%5B", "%5D"], ["[", "]"], $datastr);
 /*
 		echo '<pre>';
