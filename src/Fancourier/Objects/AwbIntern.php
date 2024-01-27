@@ -787,7 +787,7 @@ class AwbIntern
 		$this->errors = [];
 		$this->details = [];
 		
-		if (isset($data['status']) && ($data['status'] == false) )
+		if ( (isset($data['success']) && ($data['success'] == false) ) || ( isset($data['errors']) && is_array($data['errors']) && (count($data['errors']) > 0) ) )
 			{
 			$this->hasErrors = true;
 			$this->errors = $data['errors'] ?? [];
