@@ -106,7 +106,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
      */
     public function setPaymentType($paymentType)
     {
-        if ($paymentType != self::TYPE_RECIPIENT || $paymentType != self::TYPE_SENDER) {
+        if ($paymentType != self::TYPE_RECIPIENT && $paymentType != self::TYPE_SENDER) {
             throw new \InvalidArgumentException("Invalid paymentType value");
         }
 
