@@ -12,7 +12,7 @@ class DeleteCourierOrder extends Generic implements ResponseInterface
 		
 		if (json_last_error() === JSON_ERROR_NONE)
 			{
-			if ($response_json['status'] == 'success')
+			if (isset($response_json['status']) && ($response_json['status'] == 'success'))
 				{
 				parent::setData(true);
 				}
