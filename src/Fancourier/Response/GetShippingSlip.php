@@ -20,7 +20,7 @@ class GetShippingSlip extends Generic implements ResponseInterface
 			{
 			$this->result = [];
 			
-			if (isset($response_status['status']) && ($response_json['status'] == 'success'))
+			if (isset($response_json['status']) && ($response_json['status'] == 'success'))
 				{
 				parent::setData($response_json['data']);
 				
