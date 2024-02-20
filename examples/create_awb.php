@@ -20,8 +20,8 @@ $awb
 	->setCity('Aciuta')
 	->setStreet('Str Lunga')
 	->setNumber(1)
-	->addOption('S')
-	->addOption('X');
+	->addOption('S')			// livrare sambata
+	->addOption('X');			// ePod
 
 // create a new request object
 $request = new Fancourier\Request\CreateAwb();
@@ -85,8 +85,8 @@ All set* functions here have an equivalent get* function
 ->setReimbursement($cod)				// cash on delivery (ramburs)
 ->setCurrency($currency)	// most likely not used in the api. field is set if you read the awb information, but doesn't appear to do anything when sent
 ->setDeclaredValue($declaredValue)
-->setPaymentType($paymentType)
-->setRefund($refund)
+->setPaymentType($paymentType)		// expeditor/destinatar
+->setRefund($refund)				// restituire
 ->setReturnPayment($reimbursementPaymentType)
 ->setNotes($notes)
 ->setContents($contents)
