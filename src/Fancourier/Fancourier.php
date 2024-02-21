@@ -176,6 +176,15 @@ class Fancourier
     }
 
     /**
+     * @param $request
+     * @return \Fancourier\Response\GetLocalities
+     */
+    public function getLocalities($request)
+    {
+        return $this->send($request);
+    }
+
+    /**
      * @param GetPudo $request
      * @return \Fancourier\Response\GetPudo
      */
