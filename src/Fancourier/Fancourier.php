@@ -133,7 +133,7 @@ class Fancourier
 //    }
 
     /**
-     * @return \Fancourier\Response\GetCities
+     * @return \Fancourier\Response\GetServices
      */
     public function getServices()
     {
