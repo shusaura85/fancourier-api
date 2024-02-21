@@ -5,7 +5,7 @@ namespace Fancourier\Request;
 use Fancourier\Response\GetLocalities as GetLocalitiesResponse;
 
 
-class GetLocalities extends AbstractRequest implements RequestInterface
+class GetLocalities extends AbstractRequest
 {
     protected $gateway = 'reports/localities';
     protected $method = 'GET';
@@ -38,7 +38,7 @@ class GetLocalities extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $county
-     * @return GetRates
+     * @return GetLocalities
      */
     public function setCounty($county)
     {

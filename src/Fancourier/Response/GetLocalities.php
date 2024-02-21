@@ -9,14 +9,14 @@ class GetLocalities extends Generic implements ResponseInterface
 {
     protected  $result;
 
-    public function setData($datastr)
+    public function setData($data)
     {
-        $response_json = json_decode($datastr, true);
+        $response_json = json_decode($data, true);
 
         if (json_last_error() === JSON_ERROR_NONE) {
             $this->result = [];
 
-            if (isset($response_json['status']) && ($response_json['status'] == 'success')) {
+            if (isset($response_json['status']) && ($response_json['status'] === 'success')) {
                 parent::setData($response_json);
 
                 foreach ($response_json['data'] as $rd) {
@@ -27,7 +27,7 @@ class GetLocalities extends Generic implements ResponseInterface
                 $this->setErrorCode(-1);
             }
         } else {
-            $this->setErrorMessage($datastr);
+            $this->setErrorMessage($data);
             $this->setErrorCode(-1);
         }
         return $this;
