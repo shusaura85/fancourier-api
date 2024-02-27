@@ -123,7 +123,7 @@ class AwbExtern
 								"county" => $this->senderCounty, // {{url}}/counties 
 								"locality" => $this->senderCity, // {{url}}/localities 
 								"street" => $this->senderStreet, // {{url}}/streets 
-								"streetNo" => $this->senderNumber, 
+								"streetNo" => strval($this->senderNumber), 
 								"zipCode" => $this->senderPostalCode,
 								
 								"building" => $this->senderBuilding, 

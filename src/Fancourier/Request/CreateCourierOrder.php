@@ -95,7 +95,7 @@ class CreateCourierOrder extends AbstractRequest implements RequestInterface
 								"county" => $this->county, // {{url}}/counties 
 								"locality" => $this->city, // {{url}}/localities 
 								"street" => $this->street, // {{url}}/streets 
-								"streetNo" => $this->number, 
+								"streetNo" => strval($this->number), 
 								"zipCode" => $this->postalCode,
 								"building" => $this->building, 
 								"entrance" => $this->entrance, 
