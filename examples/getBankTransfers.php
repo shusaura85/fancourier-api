@@ -35,6 +35,7 @@ if (!$response->isOk())
 	}
 else
 	{
+	print_r($response->getData());
 	// get remaining pages
 	while ($response->isOk() && ($response->getCurrentPage() <= $response->getTotalPages()) )
 		{
