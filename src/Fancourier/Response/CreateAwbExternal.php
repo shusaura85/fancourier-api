@@ -17,15 +17,11 @@ class CreateAwbExternal extends Generic implements ResponseInterface
 		catch (\TypeError $e)
 			{ }
 		
-		echo '<pre>';
-		print_r($response_json);
-		echo '</pre>';
-		
 		if (json_last_error() === JSON_ERROR_NONE)
 			{
 			$this->result = [];
 			
-			if (!isset($response_json['status']) && (!$response_json['status'] != 'error') && count($response_json) > 0)
+			if (count($response_json) > 0)
 				{
 				parent::setData($response_json);
 /*
