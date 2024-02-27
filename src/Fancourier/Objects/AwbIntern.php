@@ -102,7 +102,7 @@ class AwbIntern
 								"county" => $this->county, // {{url}}/counties 
 								"locality" => $this->city, // {{url}}/localities 
 								"street" => $this->street, // {{url}}/streets 
-								"streetNo" => $this->number, 
+								"streetNo" => strval($this->number), 	// API demands this to be a string
 								"pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points 
 								"zipCode" => $this->postalCode,
 								
