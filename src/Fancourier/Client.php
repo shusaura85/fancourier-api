@@ -79,7 +79,7 @@ class Client {
 		$this->init($con_timeout, $timeout);
 		
 		curl_setopt($this->curl, CURLOPT_URL, $url);
-		curl_setopt($this->curl, CURLOPT_HEADER, 0);
+		//curl_setopt($this->curl, CURLOPT_HEADER, 0);
 		curl_setopt($this->curl, CURLOPT_POST, 0);
 		if ($this->is_put)
 			{
@@ -132,7 +132,7 @@ class Client {
 		$this->init($con_timeout, $timeout);
 
 		curl_setopt($this->curl, CURLOPT_URL, $url);
-		curl_setopt($this->curl, CURLOPT_HEADER, 0);
+		//curl_setopt($this->curl, CURLOPT_HEADER, 0);
 
 		curl_setopt($this->curl, CURLOPT_POST, 1);
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
@@ -173,7 +173,7 @@ class Client {
 		echo '</pre>';
 */
 		curl_setopt($this->curl, CURLOPT_URL, $url);
-		curl_setopt($this->curl, CURLOPT_HEADER, 0);
+		//curl_setopt($this->curl, CURLOPT_HEADER, 0);
 
 		curl_setopt($this->curl, CURLOPT_POST, 1);
 		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $datastr);
@@ -202,14 +202,16 @@ class Client {
 	
 	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600)//: string|false
 		{
+		$this->headers_add('Content-Type', 'application/json'); // add content-type to headers
 		$this->init($con_timeout, $timeout);
 
 		curl_setopt($this->curl, CURLOPT_URL, $url);
 
-		curl_setopt($this->curl, CURLOPT_HEADER, ['Content-Type: application/json'] );
+		//curl_setopt($this->curl, CURLOPT_HEADER, ['Content-Type: application/json'] );
 
-		curl_setopt($this->curl, CURLOPT_POST, 1);
-		curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($data));
+		//curl_setopt($this->curl, CURLOPT_POST, 1);
+		$jsondata = json_encode($data);
+		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $jsondata);
 		if ($this->is_put)
 			{
 			curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -218,28 +220,20 @@ class Client {
 			{
 			curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 			}
+		
+		$this->headers_delete('Content-Type'); // remove the custom content-type to not interfere with other requests
 
 		$response = curl_exec($this->curl);
+
 		if(empty($response)||is_null($response))
 			{
 			$this->close();
 			}
 
-		//echo ($response);
 		if (!curl_error($this->curl) && $response)
 			{
 			$this->close();
-			try {
-				$response_array = json_decode($response, true);
-			}
-			catch (\Exception $e) {
-				$response_array = ['internal_error' => 'Response is not a valid JSON string', 'raw' => $response];
-			}
-			if (is_null($response_array))
-				{
-				$response_array = ['internal_error' => 'Response is not a valid JSON string', 'raw' => $response];
-				}
-			return $response_array;
+			return $response;
 			}
 
 		$this->set_error(curl_error($this->curl));
