@@ -21,7 +21,7 @@ class Pudo
 	
 	public function __construct($data)
 		{
-		$this->id				= intval($data['id'] ?? 0);
+		$this->id				= $data['id'] ?? '';
 		$this->name				= $data['name'] ?? '';
 		$this->routingLocation	= $data['routingLocation'] ?? '';
 		$this->description		= $data['description'] ?? '';
