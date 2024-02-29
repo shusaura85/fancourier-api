@@ -18,6 +18,9 @@ class BankTransfer
 	protected $recipientContactPerson;
 	protected $recipientCity;
 	
+	protected $senderName;
+	protected $senderContactPerson;
+	
 	public function __construct($data)
 		{
 		$this->awbNumber				= $data['info']['awbNumber'] ?? '';
