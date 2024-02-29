@@ -47,7 +47,7 @@ class TrackAwb extends Generic implements ResponseInterface
 		}
 	
 		
-	public function getAwb($awnNo) //: AwbTracker|false
+	public function getAwb($awbNo) //: AwbTracker|false
 		{
 		return $this->result[ $awbNo ] ?? false;
 		}
