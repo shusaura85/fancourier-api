@@ -17,7 +17,7 @@ class Branch
 	protected $addr_countyId;
 	protected $addr_cityId;
 	protected $addr_street;
-	protected $addr_streeNo;
+	protected $addr_streetNo;
 	protected $addr_zipcode;
 	protected $addr_building;
 	protected $addr_entrance;
@@ -89,7 +89,7 @@ class Branch
 	
 	public function getCounty(): string
 		{
-		return $this->county;
+		return $this->addr_county;
 		}
 	
 	public function getCity(): string
@@ -99,7 +99,7 @@ class Branch
 	
 	public function getCountyId(): string
 		{
-		return $this->countyId;
+		return $this->addr_countyId;
 		}
 	
 	public function getCityId(): string
