@@ -12,7 +12,7 @@ class GetStreets extends AbstractRequest implements RequestInterface
     private $county = '';
     private $city = '';
     private $page = 0;
-    private $perPage = 100;
+    private $perPage = 1000;
 
     public function __construct()
     {
@@ -116,9 +116,9 @@ class GetStreets extends AbstractRequest implements RequestInterface
      */
     public function setPerPage($perPage)
     {
-		if ($perPage > 100)
-			{	// FAN Courier API limits this to maximum 100 even if the documentation specifies 1000
-			$perPage = 100;
+		if ($perPage > 1000)
+			{
+			$perPage = 1000;
 			}
         $this->perPage = $perPage;
         return $this;

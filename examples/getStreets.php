@@ -7,7 +7,7 @@ $request = new Fancourier\Request\GetStreets();
 $request
     ->setCity('Braila')
     ->setCounty('Braila')
-    ->setPerPage(100);
+    ->setPerPage(1000);
 	
 /*
 Functions in GetStreets REQUEST (only the set* functions are shown, the get* functions simply return the set values)
