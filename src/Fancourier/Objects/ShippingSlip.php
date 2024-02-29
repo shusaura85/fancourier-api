@@ -74,11 +74,6 @@ class ShippingSlip
 		return $this->awbNumber;
 		}
 	
-	public function getInfo(): array
-		{
-		return $this->info;
-		}
-	
 	public function getService(): string
 		{
 		return $this->service;
