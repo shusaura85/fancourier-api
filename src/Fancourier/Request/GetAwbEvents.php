@@ -8,7 +8,7 @@ class GetAwbEvents extends AbstractRequest implements RequestInterface
 {
     protected $gateway = 'reports/awb-events';
 	protected $method = 'GET';
-	
+
     protected $language = '';
 
     public function __construct()
@@ -24,7 +24,7 @@ class GetAwbEvents extends AbstractRequest implements RequestInterface
 			{
 			$arr['language'] = $this->language;
 			}
-		
+
 		return $arr;
     }
 
@@ -33,7 +33,7 @@ class GetAwbEvents extends AbstractRequest implements RequestInterface
      */
     public function getLanguage()
     {
-        return $this->county;
+        return $this->language;
     }
 
     /**
