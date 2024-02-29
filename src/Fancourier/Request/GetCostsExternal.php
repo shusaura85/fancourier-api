@@ -157,7 +157,7 @@ class GetCostsExternal extends AbstractRequest implements RequestInterface
      */
     public function getCountry()
     {
-        return $this->city;
+        return $this->country;
     }
 
     /**
