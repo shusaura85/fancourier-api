@@ -33,16 +33,16 @@ class GetCountiesExternal extends AbstractRequest implements RequestInterface
      */
     public function getCountry()
     {
-        return $this->county;
+        return $this->country;
     }
 
     /**
      * @param string $country
      * @return GetCities
      */
-    public function setCountry($county)
+    public function setCountry($country)
     {
-        $this->county = $county;
+        $this->country = $country;
         return $this;
     }
 
