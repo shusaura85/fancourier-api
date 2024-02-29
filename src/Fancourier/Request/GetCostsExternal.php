@@ -18,7 +18,7 @@ class GetCostsExternal extends AbstractRequest implements RequestInterface
     private $length = 0;
     private $width = 0;
     private $height = 0;
-	
+
     private $service = 'Export';
 	private $deliveryMode = 'Rutier';		// "rutier" sau "aerian" (metodele disponibile se pot afla prin GetCountries)
 	private $documentType = 'document';		// "document" sau "non document"
@@ -52,22 +52,22 @@ class GetCostsExternal extends AbstractRequest implements RequestInterface
 						'country'	=> $this->country,
 						],
 			];
-		
+
 		if ( ($this->senderCity != '') || ($this->senderCounty != '') )
 			{
 			$arr['sender'] = [];
-			
+
 			if ($this->senderCity != '')
 				{
 				$arr['sender']['locality'] = $this->senderCity;
 				}
-			
+
 			if ($this->senderCounty != '')
 				{
 				$arr['sender']['county'] = $this->senderCounty;
 				}
 			}
-		
+
 		return $arr;
     }
 
@@ -157,7 +157,7 @@ class GetCostsExternal extends AbstractRequest implements RequestInterface
      */
     public function getCountry()
     {
-        return $this->city;
+        return $this->senderCounty;
     }
 
     /**

@@ -8,7 +8,7 @@ class GetCountiesExternal extends AbstractRequest implements RequestInterface
 {
     protected $gateway = 'reports/external-counties';
 	protected $method = 'GET';
-	
+
     protected $country = '';
 
     public function __construct()
@@ -24,7 +24,7 @@ class GetCountiesExternal extends AbstractRequest implements RequestInterface
 			{
 			$arr['country'] = $this->country;
 			}
-		
+
 		return $arr;
     }
 
@@ -33,7 +33,7 @@ class GetCountiesExternal extends AbstractRequest implements RequestInterface
      */
     public function getCountry()
     {
-        return $this->county;
+        return $this->country;
     }
 
     /**
@@ -42,7 +42,7 @@ class GetCountiesExternal extends AbstractRequest implements RequestInterface
      */
     public function setCountry($county)
     {
-        $this->county = $county;
+        $this->country = $county;
         return $this;
     }
 

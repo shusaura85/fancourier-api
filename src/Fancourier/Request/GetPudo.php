@@ -8,7 +8,7 @@ class GetPudo extends AbstractRequest implements RequestInterface
 {
     protected $gateway = 'reports/pickup-points';
 	protected $method = 'GET';
-	
+
     protected $type = self::PUDO_FANBOX;
 	protected $pudoId;					// if id is set, type will be ignored
 
@@ -32,7 +32,7 @@ class GetPudo extends AbstractRequest implements RequestInterface
 				'id' => $this->pudoId
 				];
 			}
-		
+
 		return $arr;
     }
 
@@ -41,7 +41,7 @@ class GetPudo extends AbstractRequest implements RequestInterface
      */
     public function getType()
     {
-        return $this->county;
+        return $this->type;
     }
 
     /**
