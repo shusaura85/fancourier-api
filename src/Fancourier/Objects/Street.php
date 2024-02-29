@@ -57,7 +57,7 @@ class Street
 		return isset($this->details[$zipCode]);
 		}
 	
-	public function getDetails($zipCode): array|false
+	public function getDetails($zipCode)//: array|false
 		{
 		return $this->details[$zipCode] ?? false;
 		}
