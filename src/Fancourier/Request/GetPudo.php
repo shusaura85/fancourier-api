@@ -41,7 +41,7 @@ class GetPudo extends AbstractRequest implements RequestInterface
      */
     public function getType()
     {
-        return $this->county;
+        return $this->type;
     }
 
     /**
