@@ -123,7 +123,7 @@ $awb
     ->setCounty('Arad')
     ->setCity('Aciuta')
     ->setStreet('Str Lunga')
-    ->setNumber(1)
+    ->setNumber(1) // mandatory but ignored.
     ->addOption('S')
     ->addOption('X');
 
