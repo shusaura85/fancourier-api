@@ -13,7 +13,8 @@
     - <a href="#track-awb">Track AWB</a>
     - <a href="#track-awb-in-bulk">Track awb in bulk</a>
     - <a href="#fanbox">FANBox</a>
-    - <a href="#print-awb">Print AWB</a>
+    - <a href="#print-awb">Print AWB (PDF)</a>
+    - <a href="#print-awb-zpl">Print AWB (ZPL)</a>
     - <a href="#print-awb-html">Print AWB Html</a>
     - <a href="#delete-awb">Delete AWB</a>
 - <a href="#license">License</a>
@@ -290,7 +291,9 @@ if ($response->isOk()) {
 ### Print AWB
 
 The print request can print one or more AWBs using a single request.  
-Please note that unlike the old selfawb API, the new API does not offer a way to manually specify AWB size and it is based only on the options when creating it.
+You can specify the size of the AWB using the `->setSize()` function. Available options are: *empty*, **A4**, **A5** and **A6**. **A6** can only be used with ePod option.  
+PDF printing is the default mode of printing.  
+Please note that you can't request ZPL and PDF at the same time. Using `setPdf()` will automatically disable ZPL option if set.  
 
 Request
 ```php
@@ -310,9 +313,32 @@ if ($response->isOk()) {
 }
 ```
 
+### Print AWB ZPL
+
+You can request the AWB in the ZPL format (Zebra Programming Language) for use with a label printer.  
+Please note that you can't request ZPL and PDF at the same time. Using `setZpl()` will automatically disable PDF option if set.  
+
+Request
+```php
+$request = new Fancourier\Request\PrintAwb();
+$request
+    ->setZpl(true)
+    ->setAwb('2150900120086');
+```
+Response
+```php
+$response = $fan->printAwb($request);
+if ($response->isOk()) {
+    echo $response->getData();
+} else {
+    var_dump($response->getErrorMessage());
+    print_r($response->getAllErrors());
+}
+```
+
 ### Print AWB Html
 
-If you want the AWB in a HTML format, just use ->setPdf(false) to get HTML data instead of PDF
+If you want the AWB in a HTML format, just use ->setPdf(false) to get HTML data instead of PDF.  
 
 Request
 ```php
