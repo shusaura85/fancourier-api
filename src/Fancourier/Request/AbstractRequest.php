@@ -99,7 +99,7 @@ abstract class AbstractRequest implements RequestInterface
 			}
 
         if (false === $responseString) {
-            $this->response->setErrorCode(-1)->setErrorMessage($this->client->getError());
+            $this->response->setErrorCode(-1)->setErrorMessage($this->client->get_error());
         } else {
             $this->response->setData($responseString);
         }
