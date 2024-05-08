@@ -49,7 +49,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 		
 		if ($this->options != '')
 			{
-			$arr['options'] = $this->options;
+			$arr['info']['options'] = $this->options;
 			}
 		
 		if ( ($this->width > 0) && ($this->height > 0) && ($this->length > 0) )
