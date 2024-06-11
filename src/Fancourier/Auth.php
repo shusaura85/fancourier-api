@@ -11,6 +11,7 @@ class Auth {
 	private $password;
 
 	private $btoken = '';
+    private $btoken_expires_at = '';
 	private $btoken_message = '';
 
 	protected $verifyHost = true;
@@ -55,6 +56,11 @@ class Auth {
 		return $this->btoken_message;
 		}
 
+	public function getTokenExpiresAt()
+	{
+		return $this->btoken_expires_at; // Date format: Y-m-d H:i:s (unknown timezone)
+	}
+
 	private function retrieve_token()
 		{
 		$client = new Client();
@@ -66,7 +72,7 @@ class Auth {
 			'password' => $this->password
 			];
 		$response = $client->post($url, $data);
-		// {"status":"success","data":{"token":"1811783|P28BQMrSipEdRfPujLKpqKJjoYLyxT8RsW0MxMQ7"}}
+        // {"status":"success","data":{"token":"48944740|EJU0MgzeWY4y1zy9JpQg3cu3cDiqoVg1ZXsIrqLQ","expiresAt":"2024-06-11 07:23:53"}}
 
 		$response_json = json_decode($response, true);
 
@@ -74,7 +80,8 @@ class Auth {
 			{
 			if ($response_json['status'] == 'success')
 				{
-				$this->btoken	= $response_json['data']['token'];
+				$this->btoken = $response_json['data']['token'];
+				$this->btoken_expires_at = $response_json['data']['expiresAt'];
 				}
 			else
 				{

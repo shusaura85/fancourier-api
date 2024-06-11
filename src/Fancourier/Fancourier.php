@@ -245,7 +245,7 @@ class Fancourier
     {
         return $this->send($request);
     }
-	
+
     /**
      * @param DeleteCourierOrder $request
      * @return \Fancourier\Response\DeleteCourierOrder
@@ -254,7 +254,7 @@ class Fancourier
     {
         return $this->send($request);
     }
-	
+
     /**
      * @param GetCourierOrders $request
      * @return \Fancourier\Response\GetCourierOrders
@@ -263,7 +263,7 @@ class Fancourier
     {
         return $this->send($request);
     }
-	
+
     /**
      * @param GetCourierOrderEvents $request
      * @return \Fancourier\Response\GetCourierOrderEvents
@@ -319,6 +319,14 @@ class Fancourier
     public function getToken($refresh = false)
     {
         return $this->auth->getToken($refresh);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTokenExpiresAt()
+    {
+        return $this->auth->getTokenExpiresAt();
     }
 
     /**
