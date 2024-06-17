@@ -84,7 +84,7 @@ class AwbExtern
 		$arr = [
 			"info" => [
 					"deliveryMode" => $this->deliveryMode,
-					"service" => $this->service, // "Export" sau "Export-Cont Colector"
+					"service" => $this->service, // "Export" sau "Export-Cont Colector". Note that the API returns "The selected info.service is invalid" for "Export-Cont Colector". Use "Export" instead. If using CoD, it will be changed by fan courier automatically
 					"contentType" => $this->documentType,
 					"bank" => $this->bank, //optional 
 					"bankAccount" => $this->iban, //optional 
@@ -100,8 +100,8 @@ class AwbExtern
 					"weight" => $this->weight, //obligatoriu 
 					"declaredValue" => $this->declaredValue, //optional
 					
-				//	"cod" => $this->CoD,	// awb extern foloseste "repayment" ca sa fie specificat rambursul
-					"repayment" => $this->CoD, //optional - daca se doreste trimiterea cu ramburs
+					"cod" => $this->CoD,	// optional - daca se doreste trimiterea cu ramburs
+				//	"repayment" => $this->CoD, //optional - daca se doreste trimiterea cu ramburs - this was used in earlier versions of the 2.0 api - no longer used
 				//	"currency" => $this->currency, //nu functioneaza
 					"payment" => $this->paymentType,
 					"refund" => $this->refund,
