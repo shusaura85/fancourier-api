@@ -84,7 +84,7 @@ class Fancourier
 
     /**
      * @param PrintAwb $request
-     * @return \Fancourier\Response\Generic
+     * @return \Fancourier\Response\PrintAwb
      */
     public function printAwb(PrintAwb $request)
     {
@@ -92,16 +92,7 @@ class Fancourier
     }
 
     /**
-     * @param PrintAwb $request
-     * @return \Fancourier\Response\Generic
-     */
- /*   public function printAwbHtml(PrintAwbHtml $request)
-    {
-        return $this->send($request);
-    }
-*/
-    /**
-     * @param PrintAwb $request
+     * @param DeleteAwb $request
      * @return \Fancourier\Response\DeleteAwb
      */
     public function deleteAwb(DeleteAwb $request)
@@ -110,7 +101,7 @@ class Fancourier
     }
 
     /**
-     * @param PrintAwb $request
+     * @param GetCosts $request
      * @return \Fancourier\Response\GetCosts
      */
     public function getCosts(GetCosts $request)
@@ -119,7 +110,7 @@ class Fancourier
     }
 
     /**
-     * @param PrintAwb $request
+     * @param GetCostsExternal $request
      * @return \Fancourier\Response\GetCostsExternal
      */
     public function getCostsExternal(GetCostsExternal $request)
@@ -197,13 +188,13 @@ class Fancourier
      * @param GetAwbEvents $request
      * @return \Fancourier\Response\GetAwbEvents
      */
-    public function getAwbEvents($request)
+    public function getAwbEvents(GetAwbEvents $request)
     {
         return $this->send($request);
     }
 
     /**
-     * @param PrintAwb $request
+     * @param TrackAwb $request
      * @return \Fancourier\Response\Generic
      */
     public function trackAwb(TrackAwb $request)
@@ -223,7 +214,7 @@ class Fancourier
      * @param GetCountiesExternal $request
      * @return \Fancourier\Response\GetCountiesExternal
      */
-    public function getCountiesExternal($request)
+    public function getCountiesExternal(GetCountiesExternal $request)
     {
         return $this->send($request);
     }
@@ -232,7 +223,7 @@ class Fancourier
      * @param GetCitiesExternal $request
      * @return \Fancourier\Response\GetCitiesExternal
      */
-    public function getCitiesExternal($request)
+    public function getCitiesExternal(GetCitiesExternal $request)
     {
         return $this->send($request);
     }
@@ -316,7 +307,7 @@ class Fancourier
      * @param bool Force token refresh even if token given in constructor
      * @return string|false
      */
-    public function getToken($refresh = false)
+    public function getToken(bool $refresh = false)
     {
         return $this->auth->getToken($refresh);
     }
