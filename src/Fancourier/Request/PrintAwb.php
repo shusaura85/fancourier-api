@@ -2,6 +2,8 @@
 
 namespace Fancourier\Request;
 
+use Fancourier\Response\PrintAwb as PrintAwbResponse;
+
 class PrintAwb extends AbstractRequest implements RequestInterface
 {
     protected $gateway = 'awb/label';
@@ -12,6 +14,12 @@ class PrintAwb extends AbstractRequest implements RequestInterface
     private $zpl = false;
     private $lang = 'ro';
     private $size = '';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->response = new PrintAwbResponse();
+    }
 
     public function pack()
     {
