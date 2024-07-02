@@ -69,7 +69,28 @@ class PrintAwb extends AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * Returns true if PDF and ZPL are not set (the returned AWB will be in HTML format)
+     * @return bool
+     */
+    public function getHtml()
+    {
+        return (!$this->pdf && !$this->zpl);
+    }
+
+    /**
+     * Explicit method to set HTML mode (deactivates PDF / ZPL formats)
+     * @param bool $active
+     * @return PrintAwb
+     */
+    public function setHtml($active = true)
+    {
+        if ($this->pdf) { $this->pdf = false; }	// disable PDF in case it's active
+        if ($this->zpl) { $this->zpl = false; }	// disable ZPL in case it's active
+        return $this;
+    }
+
+    /**
+     * @return bool
      */
     public function getPdf()
     {
@@ -88,7 +109,7 @@ class PrintAwb extends AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function getZpl()
     {
