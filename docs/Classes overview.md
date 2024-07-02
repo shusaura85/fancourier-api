@@ -11,7 +11,7 @@ All PHP classes are relative to the `Fancourier\` namespace.
 |**Generare AWB**         |                                          |                             |                                    |
 |Tipuri servicii          |`[Request/Response]\GetServices`          |`Objects\Service`            |No need to manually create request object. Just call `Fancourier::getServices()` |
 |Optiuni servicii         |`[Request/Response]\GetServiceOptions`    |`Objects\ServiceOption`      |---                                 |
-|Printare AWB             |`Request\PrintAwb`                        |*\<none\>*                   |Uses  **\Response\Generic** object. Calling **getData()** on it will return the HTML or PDF file data |
+|Printare AWB             |`[Request/Response]\PrintAwb`             |*\<none\>*                   | Calling **getData()** on it will return the HTML, PDF or ZPL file data |
 |Stergere AWB             |`[Request/Response]\DeleteAwb`            |*\<none\>*                   |---                                 |
 |**AWB Intern**           |                                          |                             |                                    |
 |Creare AWB Intern        |`[Request/Response]\CreateAwb`            |`Objects\AwbIntern`          |Used for both single and bulk AWB creation. AWB information is set via the object. The request object takes AwbIntern objects. |
