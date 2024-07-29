@@ -20,8 +20,7 @@
 - <a href="#license">License</a>
 
 ## Information
-This version of the library is designed for FANCourier API v2.0 (JSON based responses). The code works and there are examples for all API requests, however, the documentation is not yet ready.
-But there are a lot of data types missing and certain functions may not seem obvious.  
+This version of the library is designed for FANCourier API v2.0 (JSON based responses). The code works and there are examples for all API requests, however, the documentation is not yet ready.  
   
 All requests have the method `getData()` that returns the unprocessed response of the API. Aditional functions depend on the response object type to return processed data.  
 
