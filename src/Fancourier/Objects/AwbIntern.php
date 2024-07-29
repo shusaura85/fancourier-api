@@ -46,7 +46,8 @@ class AwbIntern
     protected $number = '';									// info.recipient.address.streetNo
 	
 	protected $pickupLocation = '';	// ONLY FOR PUDO		// info.recipient.address.pickupLocation
-	
+    protected $dropOffLocation = ''; // ONLY FOR PUDO		// info.sender.address.dropOffLocation
+
     protected $postalCode = '';								// info.recipient.address.zipcode
 	
     protected $building = '';								// info.recipient.address.building
@@ -112,8 +113,13 @@ class AwbIntern
 								"apartment" => $this->apartment,
 								//"country" => "Romania" // optional
 								] 
-				]
-			];
+                        ],
+            "sender" => [
+                "address" => [
+                    "dropOffLocation" => $this->dropOffLocation
+                ]
+            ]
+        ];
 		
 		return $arr;
 		}
@@ -773,6 +779,24 @@ class AwbIntern
     public function setApartment($apartment)
     {
         $this->apartment = $apartment;
+        return $this;
+    }
+
+   /**
+     * @return string
+     */
+    public function getDropOffLocation()
+    {
+        return $this->dropOffLocation;
+    }
+
+    /**
+     * @param string $number
+     * @return AwbIntern
+     */
+    public function setDropOffLocation($number)
+    {
+        $this->dropOffLocation = $number;
         return $this;
     }
 
