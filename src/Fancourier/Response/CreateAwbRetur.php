@@ -4,7 +4,7 @@ namespace Fancourier\Response;
 
 use \Fancourier\Objects\AwbInternRetur;
 
-class CreateAwb extends Generic implements ResponseInterface
+class CreateAwbRetur extends Generic implements ResponseInterface
 {
 	protected $result;
 	protected $awbList;
@@ -54,7 +54,7 @@ class CreateAwb extends Generic implements ResponseInterface
     }
 	
 	/*
-	* @param array[AwbIntern] $awbList
+	* @param array[AwbInternRetur] $awbList
 	*/
 	public function setAwbList(array $awbList)
 		{

@@ -2,9 +2,9 @@
 
 namespace Fancourier\Objects;
 
-use \Fancourier\Request\CreateAwb;
+use \Fancourier\Request\CreateAwbRetur;
 
-class AwbIntern
+class AwbInternRetur
 {
 	// response fields only
 	protected $awb;
@@ -51,10 +51,6 @@ class AwbIntern
 	protected $pickupLocation = '';	// ONLY FOR PUDO		// info.recipient.address.pickupLocation
     protected $dropOffLocation = ''; // ONLY FOR PUDO		// info.sender.address.dropOffLocation
 
-
-	protected $pickupLocation = '';	// ONLY FOR PUDO		// info.recipient.address.pickupLocation
-    protected $dropOffLocation = ''; // ONLY FOR PUDO		// info.sender.address.dropOffLocation
-
     protected $postalCode = '';								// info.recipient.address.zipcode
 	
     protected $building = '';								// info.recipient.address.building
@@ -96,70 +92,70 @@ class AwbIntern
 		
 		$arr = [
 			"info" => [
-					"service" => $this->service, //obligatoriu; {{url}}/services 
-					"bank" => $this->bank, //optional 
-					"bankAccount" => $this->iban, //optional 
+					"service" => $this->service, //obligatoriu; {{url}}/services
+					"bank" => $this->bank, //optional
+					"bankAccount" => $this->iban, //optional
 					"packages" => [
 								"parcel" => $this->parcels,
 								"envelope" => $this->envelopes
-								], 
-					"weight" => $this->weight, //obligatoriu 
-					"cod" => $this->CoD, //optional 
-					"currency" => $this->currency, //optional 
-					"declaredValue" => $this->declaredValue, //optional 
-					"payment" => $this->paymentType, //obligatoriu 
-					"refund" => $this->refund, //optional 
-					"returnPayment" => $this->returnPayment, //obligatoriu 
-					"observation" => $this->notes, //obligatoriu 
-					"content" => $this->contents, //optional 
+								],
+					"weight" => $this->weight, //obligatoriu
+					"cod" => $this->CoD, //optional
+					"currency" => $this->currency, //optional
+					"declaredValue" => $this->declaredValue, //optional
+					"payment" => $this->paymentType, //obligatoriu
+					"refund" => $this->refund, //optional
+					"returnPayment" => $this->returnPayment, //obligatoriu
+					"observation" => $this->notes, //obligatoriu
+					"content" => $this->contents, //optional
 					"dimensions" => [
 								"length" => $this->length,
 								"height" => $this->height,
 								"width" => $this->width
-								], 
-					"costCenter" => $this->costCenter, //optional 
-					"options" => $this->options 
-				], 
+								],
+					"costCenter" => $this->costCenter, //optional
+					"options" => $this->options
+				],
 			"recipient" => [ //obligatoriu
-						"name" => $this->name, 
-						"contactPerson" => $this->contactPerson, // obligatoriu
-						"phone" => $this->phone,
-						"secondaryPhone" => $this->altPhone, // optional
-						"email" => $this->email, 
-						"address" => [ //obligatoriu
-								"county" => $this->county, // {{url}}/counties 
-								"locality" => $this->city, // {{url}}/localities 
-								"street" => $this->street, // {{url}}/streets 
-								"streetNo" => strval($this->number), 	// API demands this to be a string
-								"pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points 
-								"zipCode" => $this->postalCode,
-								
-								"building" => $this->building, 
-								"entrance" => $this->entrance, 
-								"floor" => $this->floor, 
-								"apartment" => $this->apartment,
-								//"country" => "Romania" // optional
-								] 
-                        ],
+                    "name" => $this->name,
+                    "contactPerson" => $this->contactPerson, // obligatoriu
+                    "phone" => $this->phone,
+                    "secondaryPhone" => $this->altPhone, // optional
+                    "email" => $this->email,
+                    "address" => [ //obligatoriu
+                            "county" => $this->county, // {{url}}/counties
+                            "locality" => $this->city, // {{url}}/localities
+                            "street" => $this->street, // {{url}}/streets
+                            "streetNo" => strval($this->number), 	// API demands this to be a string
+                            "pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points
+                            "zipCode" => $this->postalCode,
+                            
+                            "building" => $this->building,
+                            "entrance" => $this->entrance,
+                            "floor" => $this->floor,
+                            "apartment" => $this->apartment,
+                            //"country" => "Romania" // optional
+                            ]
+                    ],
             "sender" => [ //obigatoriu
-                    "name" => $this->senderName, 
+                    "name" => $this->senderName,
                     "contactPerson" => $this->senderContactPerson, // obligatoriu
                     "phone" => $this->senderPhone,
                     "secondaryPhone" => $this->senderAltPhone, // optional
-                    "email" => $this->senderEmail, 
+                    "email" => $this->senderEmail,
                     "address" => [ //obligatoriu
-                        "county" => $this->senderCounty, // {{url}}/counties 
-                        "locality" => $this->senderCity, // {{url}}/localities 
-                        "street" => $this->senderStreet, // {{url}}/streets 
+                        "county" => $this->senderCounty, // {{url}}/counties
+                        "locality" => $this->senderCity, // {{url}}/localities
+                        "street" => $this->senderStreet, // {{url}}/streets
                         "streetNo" => strval($this->senderNumber), 	// API demands this to be a string
-                        "pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points 
+                        "pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points
                         "zipCode" => $this->senderPostalCode,
                         
-                        "building" => $this->senderBuilding, 
-                        "entrance" => $this->senderEntrance, 
-                        "floor" => $this->senderFloor, 
+                        "building" => $this->senderBuilding,
+                        "entrance" => $this->senderEntrance,
+                        "floor" => $this->senderFloor,
                         "apartment" => $this->senderApartment,
-                        ] 
+                        ]
                     ],
                 ];
 		
