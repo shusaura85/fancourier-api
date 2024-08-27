@@ -76,7 +76,7 @@ Array
 	
 	public function getAll(): array
 		{
-		print_r($this->result);
+		//print_r($this->result);
 		if (empty($this->result))
 			{
 			return [];
