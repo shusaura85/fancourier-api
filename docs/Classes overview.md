@@ -33,6 +33,7 @@ All PHP classes are relative to the `Fancourier\` namespace.
 |Borderou                 |`[Request/Response]\GetShippingSlip`      |`Objects\ShippingSlip`       |---                                 |
 |Event-uri AWB            |`[Request/Response]\GetAwbEvents`         |`Objects\AwbEvent`           |---                                 |
 |AWB Tracking             |`[Request/Response]\TrackAwb`             |`Objects\AwbTracker`         |Get tracking information for 1 or more AWBs |
+|AWB Confirmations        |`[Request/Response]\GetAwbConfirmations`  |`Objects\GetAwbConfirmations` |Get delivery confirmations for 1 or more AWBs |
 |Viramente Bancare        |`[Request/Response]\GetBankTransfer`      |`Objects\BankTransfer`       |---                                 |
 |**Raportare Comenzi**    |                                          |                             |                                    |
 |Raport Comenzi           |`[Request/Response]\GetCourierOrders`     |`Objects\CourierOrder`       |---                                 |
