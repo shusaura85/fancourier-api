@@ -56,7 +56,8 @@ $request->addAwb($awb);
 /*
 Functions in CreateAwbExternal REQUEST (only the set* functions are shown, the get* functions simply return the set values)
 ->addAwb(AwbExtern $awb)	// add a new AwbExtern object to the request. You can add as many as you need
-->resetAwbs()				// clears the added AwbExtern objects from the request
+->resetAwbs()			// clears the added AwbExtern objects from the request
+->setPlatformId($platformId)	// use only if needed and you have a platformId number received from Fan Courier
 */
 
 $response = $fan->createAwbExternal($request);
