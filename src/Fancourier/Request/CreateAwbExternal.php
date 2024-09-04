@@ -15,7 +15,9 @@ class CreateAwbExternal extends AbstractRequest implements RequestInterface
 {
 	protected $gateway = 'extern-awb';
 	protected $method = 'POST';
-	
+
+	protected $platformId;
+
 	protected $awbList = [];
 
     public function __construct()
@@ -27,34 +29,43 @@ class CreateAwbExternal extends AbstractRequest implements RequestInterface
     public function pack()
     {
 		$this->response->setAwbList($this->awbList);
-		
-		
+
+
 		$arr = [
-				"clientId" => $this->auth->getClientId(), //obligatoriu 
+				"clientId" => $this->auth->getClientId(), //obligatoriu
 				"shipments" => [] // shipments
 			];
-		
+
 		foreach ($this->awbList as $awb)
 			{
 			$arr['shipments'][] = $awb->pack();
 			}
-		
+
+		if (isset($this->platformId))
+			{
+			$arr['platformId'] = $this->platformId;
+			}
+
 		return $arr;
-	
+
     }
-	
+
 	public function addAwb(AwbExtern $awb)
 	{
 		$this->awbList[] = $awb;
 		return $this;
 	}
-	
-	
+
+
 	public function resetAwbs()
 	{
 		$this->awbList = [];
 		return $this;
 	}
 
-
+	public function setPlatformId($platformId)
+	{
+		$this->platformId = $platformId;
+		return $this;
+	}
 }
