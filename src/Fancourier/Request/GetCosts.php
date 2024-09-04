@@ -46,12 +46,12 @@ class GetCosts extends AbstractRequest implements RequestInterface
 						'county'	=> $this->county
 						],
 			];
-		
+
 		if ($this->options != '')
 			{
 			$arr['info']['options'] = $this->options;
 			}
-		
+
 		if ( ($this->width > 0) && ($this->height > 0) && ($this->length > 0) )
 			{
 			$arr['info']['dimensions'] = [
@@ -60,22 +60,22 @@ class GetCosts extends AbstractRequest implements RequestInterface
 										'length'	=> $this->length,
 										];
 			}
-		
+
 		if ($this->envelopes > 0)
 			{
 			$arr['info']['packages']['envelope'] = $this->envelopes;
 			}
-		
+
 		if ($this->parcels > 0)
 			{
 			$arr['info']['packages']['parcel'] = $this->parcels;
 			}
-		
+
 		if (!empty($this->declaredValue))
 			{
 			$arr['info']['declaredValue'] = $this->declaredValue;
 			}
-			
+
 		if (!empty($this->senderCity) || !empty($this->senderCounty))
 			{
 			$arr['sender'] = [];
@@ -88,7 +88,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 			{
 			$arr['sender']['county'] = $this->senderCounty;
 			}
-		
+
 		return $arr;
     }
 
@@ -102,7 +102,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param string $paymentType
-     * @return GetRates
+     * @return GetCosts
      */
     public function setPaymentType($paymentType)
     {
@@ -124,7 +124,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $city
-     * @return GetRates
+     * @return GetCosts
      */
     public function setCity($city)
     {
@@ -142,7 +142,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $county
-     * @return GetRates
+     * @return GetCosts
      */
     public function setCounty($county)
     {
@@ -160,7 +160,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $city
-     * @return GetRates
+     * @return GetCosts
      */
     public function setSenderCity($city)
     {
@@ -178,7 +178,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $county
-     * @return GetRates
+     * @return GetCosts
      */
     public function setSenderCounty($county)
     {
@@ -196,7 +196,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param int $envelopes
-     * @return GetRates
+     * @return GetCosts
      */
     public function setEnvelopes($envelopes)
     {
@@ -214,7 +214,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param int $parcels
-     * @return GetRates
+     * @return GetCosts
      */
     public function setParcels($parcels)
     {
@@ -232,7 +232,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $weight
-     * @return GetRates
+     * @return GetCosts
      */
     public function setWeight($weight)
     {
@@ -250,7 +250,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param int $length
-     * @return GetRates
+     * @return GetCosts
      */
     public function setLength($length)
     {
@@ -268,7 +268,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param int $width
-     * @return GetRates
+     * @return GetCosts
      */
     public function setWidth($width)
     {
@@ -286,7 +286,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param int $height
-     * @return GetRates
+     * @return GetCosts
      */
     public function setHeight($height)
     {
@@ -304,7 +304,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param mixed $declaredValue
-     * @return GetRates
+     * @return GetCosts
      */
     public function setDeclaredValue($declaredValue)
     {
@@ -322,7 +322,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param string $options
-     * @return GetRates
+     * @return GetCosts
      */
     public function setOptions($options)
     {
@@ -340,7 +340,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 
     /**
      * @param string $service
-     * @return GetRates
+     * @return GetCosts
      */
     public function setService($service)
     {
