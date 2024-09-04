@@ -30,7 +30,8 @@ $request->addAwb($awb);
 /*
 Functions in CreateAwb REQUEST (only the set* functions are shown, the get* functions simply return the set values)
 ->addAwb(AWBIntern $awb)	// add a new AWBIntern object to the request. You can add as many as you need
-->resetAwbs()				// clears the added AWBIntern objects from the request
+->resetAwbs()			// clears the added AWBIntern objects from the request
+->setPlatformId($platformId)	// use only if needed and you have a platformId number received from Fan Courier
 */
 
 $response = $fan->createAwb($request);
