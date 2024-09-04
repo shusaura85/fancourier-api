@@ -25,6 +25,7 @@ class CreateAwb extends AbstractRequest implements RequestInterface
         $this->response = new CreateAwbResponse();
     }
 
+
     public function pack()
     {
 		$this->response->setAwbList($this->awbList);
@@ -49,6 +50,10 @@ class CreateAwb extends AbstractRequest implements RequestInterface
 
     }
 
+
+	/**
+	* Add a new AWB object to the request
+	*/
 	public function addAwb(AwbIntern $awb)
 	{
 		$this->awbList[] = $awb;
@@ -56,12 +61,19 @@ class CreateAwb extends AbstractRequest implements RequestInterface
 	}
 
 
+	/**
+	* Clear the list of AWB's assigned to this request
+	*/
 	public function resetAwbs()
 	{
 		$this->awbList = [];
 		return $this;
 	}
 
+
+	/**
+	* Use this only if you have a platformId number from Fan Courier
+	*/
 	public function setPlatformId($platformId)
 	{
 		$this->platformId = $platformId;
