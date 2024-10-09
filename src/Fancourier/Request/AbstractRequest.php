@@ -26,6 +26,11 @@ abstract class AbstractRequest implements RequestInterface
     /** @var Client */
     protected $client;
 
+    protected $clientOverrides = [
+        'verify' => false,
+        'timeout' => false
+    ];
+
     /** @var Generic */
     protected $response;
 
@@ -41,11 +46,25 @@ abstract class AbstractRequest implements RequestInterface
         return $this;
     }
 
-	public function setVerify($verifyHost = true, $verifyPeer = true)
-	{
-		$this->client->set_verify($verifyHost, $verifyPeer);
-		return $this;
-	}
+    public function setVerify($verifyHost = true, $verifyPeer = true)
+    {
+        if ($this->clientOverrides['verify'] !== true) {
+            $this->client->set_verify($verifyHost, $verifyPeer);
+            $this->clientOverrides['verify'] = true;
+        }
+
+        return $this;
+    }
+
+    public function setTimeout($conTimeout = 3, $timeout = 6)
+    {
+        if ($this->clientOverrides['timeout'] !== true) {
+            $this->client->set_timeout($conTimeout, $timeout);
+            $this->clientOverrides['timeout'] = true;
+        }
+
+        return $this;
+    }
 
     /**
      * @return Generic

@@ -48,6 +48,9 @@ class Fancourier
     protected $verifyHost = true;
     protected $verifyPeer = true;
 
+    protected $conTimeout = 3;
+    protected $timeout = 6;
+
     public function __construct($clientId, $username, $password, $bearer_token = '')
     {
         $this->auth = new Auth($clientId, $username, $password, $bearer_token);
@@ -65,6 +68,20 @@ class Fancourier
         $this->auth->setVerify($verifyHost, $verifyPeer);
         return $this;
     }
+
+    /**
+     * Use this if you need to set a custom request timeout
+     * @param int $conTimeout
+     * @param int $timeout
+     */
+    public function setTimeout($conTimeout = 3, $timeout = 6)
+    {
+        $this->conTimeout = $conTimeout;
+        $this->timeout = $timeout;
+        $this->auth->setTimeout($conTimeout, $timeout);
+        return $this;
+    }
+
     /**
      * @param CreateAwb $request
      * @return \Fancourier\Response\CreateAwb
@@ -310,6 +327,7 @@ class Fancourier
         return $request
             ->authenticate($this->auth)
             ->setVerify($this->verifyHost, $this->verifyPeer)
+            ->setTimeout($this->conTimeout, $this->timeout)
             ->send();
     }
 
