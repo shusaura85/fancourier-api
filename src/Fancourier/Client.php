@@ -13,6 +13,9 @@ class Client {
 	private $verify_host = true;
 	private $verify_peer = true;
 
+	private $timeout = 6;
+	private $con_timeout = 3;
+
 	private $useragent	= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0';
 
 	private $headers	= [];	// custom headers
@@ -28,14 +31,14 @@ class Client {
 	/*
 	* Init curl and set common options. Called by get/post functions
 	*/
-	private function init(int $con_timeout = 60, int $timeout = 600)
+	private function init()
 		{
 		$this->curl = curl_init();
 		// init default data
 		curl_setopt($this->curl, CURLOPT_USERAGENT, $this->useragent);
 
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $con_timeout);
-		curl_setopt($this->curl, CURLOPT_TIMEOUT, $timeout);
+		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->con_timeout);
+		curl_setopt($this->curl, CURLOPT_TIMEOUT, $this->timeout);
 
 		if (!$this->verify_host)
 			{
@@ -73,10 +76,10 @@ class Client {
 		$this->is_delete = false;
 		}
 
-	public function get(string $url, int $con_timeout = 60, int $timeout = 600)//: string|false
+	public function get(string $url)//: string|false
 		{
 		//echo '<div style="font-family:monospace; padding: 5px; border: 1px solid red; margin: 5px">'.$url.'</div>';
-		$this->init($con_timeout, $timeout);
+		$this->init();
 		
 		curl_setopt($this->curl, CURLOPT_URL, $url);
 		//curl_setopt($this->curl, CURLOPT_HEADER, 0);
@@ -127,9 +130,9 @@ class Client {
 		}
 
 
-	public function post(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
+	public function post(string $url, array $data)
 		{
-		$this->init($con_timeout, $timeout);
+		$this->init();
 
 		curl_setopt($this->curl, CURLOPT_URL, $url);
 		//curl_setopt($this->curl, CURLOPT_HEADER, 0);
@@ -160,9 +163,9 @@ class Client {
 		}
 	
 	// curl doesn't like multilevel arrays in CURLOPT_POSTFIELDS, so we have to manually build the data with http_build_query
-	public function post_ma(string $url, array $data, int $con_timeout = 60, int $timeout = 600)
+	public function post_ma(string $url, array $data)
 		{
-		$this->init($con_timeout, $timeout);
+		$this->init();
 
 		$datastr = http_build_query($data, '', '&');
 		$datastr = str_replace(["%5B", "%5D"], ["[", "]"], $datastr);
@@ -200,10 +203,10 @@ class Client {
 		return false;
 		}
 	
-	public function post_json(string $url, array $data, int $con_timeout = 60, int $timeout = 600)//: string|false
+	public function post_json(string $url, array $data)//: string|false
 		{
 		$this->headers_add('Content-Type', 'application/json'); // add content-type to headers
-		$this->init($con_timeout, $timeout);
+		$this->init();
 
 		curl_setopt($this->curl, CURLOPT_URL, $url);
 
@@ -317,6 +320,14 @@ class Client {
 		{
 		$this->verify_host = $host;
 		$this->verify_peer = $peer;
+		return $this;
+		}
+
+	/* if you need a custom request timeout */
+	public function set_timeout($con_timeout = 3, $timeout = 6)
+		{
+		$this->con_timeout = $con_timeout;
+		$this->timeout = $timeout;
 		return $this;
 		}
 

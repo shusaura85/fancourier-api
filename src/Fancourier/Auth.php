@@ -17,6 +17,9 @@ class Auth {
 	protected $verifyHost = true;
 	protected $verifyPeer = true;
 
+	protected $timeout = 6;
+	protected $con_timeout = 3;
+
 	protected $gateway = 'login';
 
 	public function __construct($clientId, $username, $password, $token = '')
@@ -65,6 +68,8 @@ class Auth {
 		{
 		$client = new Client();
 		$client->set_verify($this->verifyHost, $this->verifyPeer);
+		$client->set_timeout($this->con_timeout, $this->timeout);
+
 		$url = Fancourier::API_URL.$this->gateway;
 
 		$data = [
@@ -103,6 +108,13 @@ class Auth {
     {
         $this->verifyHost = $host;
         $this->verifyPeer = $peer;
+		return $this;
     }
 
+	public function setTimeout($con_timeout = 3, $timeout = 6)
+	{
+		$this->con_timeout = $con_timeout;
+		$this->timeout = $timeout;
+		return $this;
+	}
 }
