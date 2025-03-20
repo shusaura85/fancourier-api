@@ -17,6 +17,7 @@ class AwbTracker
 	protected $oPODAwbNumber;
 	
 	protected $confirmation;
+	protected $OTD;	// on time delivery - process total duration from pickup to delivery
 	protected $events;
 	
 	public function __construct($data)
@@ -36,6 +37,7 @@ class AwbTracker
 			}
 		
 		$this->confirmation = $data['confirmation'] ?? [];
+		$this->OTD = $data['OTD'] ?? '';
 		$this->events = $data['events'] ?? [];
 		}
 	
@@ -87,6 +89,11 @@ class AwbTracker
 		{
 		return $this->confirmation ?? [];
 		}
+	
+	public function getOTD(): string
+		{
+		return $this->OTD;
+		}
 
 	public function getEvents(): Array
 		{
@@ -134,6 +141,7 @@ class AwbTracker
                     [name] => 
                     [date] => 2023-11-29 
                 )
+            [OTD] => "24H"
 
             [events] => Array
                 (
