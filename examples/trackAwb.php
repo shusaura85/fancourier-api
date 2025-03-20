@@ -43,6 +43,7 @@ The AwbTracker object has the following functions:
 ->getContent()
 ->hasConfirmation()
 ->getConfirmation()
+->getOTD()
 ->getEvents()
 ->getStatus()
 */
