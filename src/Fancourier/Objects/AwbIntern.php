@@ -33,6 +33,7 @@ class AwbIntern
 	
 	protected $costCenter = '';	// optional					// info.costCenter
     protected $options = [];	// optional					// info.options
+	protected $uitCode = '';	// optional					// info uitCode
 	
     protected $name = '';										// info.recipient.name
     protected $contactPerson = '';								// info.recipient.contactPerson
@@ -91,7 +92,8 @@ class AwbIntern
 								"width" => $this->width
 								], 
 					"costCenter" => $this->costCenter, //optional 
-					"options" => $this->options 
+					"options" => $this->options,
+					"uitCode" => $this->uitCode 
 				], 
 			"recipient" => [ //obligatoriu
 						"name" => $this->name, 
@@ -511,6 +513,24 @@ class AwbIntern
     }
 
 	/**
+     * @return string
+     */
+    public function getUitCode()
+    {
+        return $this->uitCode;
+    }
+
+    /**
+     * @param mixed $uitCode
+     * @return AwbIntern
+     */
+    public function setUitCode($uitCode)
+    {
+        $this->uitCode = $uitCode;
+        return $this;
+    }
+
+	/**
      * @return mixed
      */
     public function getRecipientName()
@@ -820,11 +840,14 @@ class AwbIntern
 		$this->awb = $data['awbNumber'];
 		$this->details = [
 				"tariff"		=> $data['tariff'] ?? '',
+				"vat"			=> $data['vat'] ?? '',
 				"packages"		=> $data['packages'] ?? '',
 				"letter"		=> $data['letter'] ?? '',
 				"routingCode"	=> $data['routingCode'] ?? '',
 				"office"		=> $data['office'] ?? '',
-				"visualCode"	=>  $data['visualCode'] ?? '',
+				"pickUpPointId"	=> $data['pickUpPointId'] ?? '',
+				"visualCode"	=> $data['visualCode'] ?? '',
+				"estimatedDeliveryTime"	=>  $data['estimatedDeliveryTime'] ?? '',
 				];
 
 		}
