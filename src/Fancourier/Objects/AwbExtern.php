@@ -27,6 +27,7 @@ class AwbExtern
 	
 	protected $costCenter = '';	// optional					// info.costCenter
     protected $options = [];	// optional					// info.options
+	protected $uitCode = '';	// optional					// info uitCode
 	
 	protected $senderName = '';
 	protected $senderContactPerson = '';
@@ -111,7 +112,8 @@ class AwbExtern
 					"content" => $this->contents, //optional 
 					
 					"costCenter" => $this->costCenter, //optional 
-					"options" => $this->options 
+					"options" => $this->options,
+					"uitCode" => $this->uitCode
 				], 
 			"sender" => [
 						"name" => $this->senderName, 
@@ -584,6 +586,24 @@ class AwbExtern
     public function resetOptions()
     {
         $this->options = [];
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getUitCode()
+    {
+        return $this->uitCode;
+    }
+
+    /**
+     * @param mixed $uitCode
+     * @return AwbExtern
+     */
+    public function setUitCode($uitCode)
+    {
+        $this->uitCode = $uitCode;
         return $this;
     }
 
