@@ -483,7 +483,7 @@ class AwbIntern
     }
 
     /**
-     * @return int
+     * @return array
      */
     public function getOptions()
     {
@@ -491,7 +491,19 @@ class AwbIntern
     }
 
     /**
-     * @param $opt
+	 * Replace all options with string containing options
+     * @param string $options
+     * @return GetCosts
+     */
+    public function setOptions($options)
+    {
+        $this->options = str_split($options);
+        return $this;
+    }
+
+    /**
+	 * Add a single option letter
+     * @param string $option
      * @return $this
      */
     public function addOption($option)
@@ -504,6 +516,7 @@ class AwbIntern
     }
 
     /**
+	 * Clear all set options
      * @return $this
      */
     public function resetOptions()
