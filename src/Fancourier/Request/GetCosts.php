@@ -22,7 +22,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
     private $height = 0;
     private $declaredValue;
 //    private $reimbursementPaymentType = self::TYPE_RECIPIENT;
-    private $options = '';
+    protected $options = [];	// optional					// info.options
     private $service = 'Standard';
 
     public function __construct()
@@ -47,7 +47,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
 						],
 			];
 
-		if ($this->options != '')
+		if (count($this->options) > 0)
 			{
 			$arr['info']['options'] = $this->options;
 			}
@@ -313,7 +313,7 @@ class GetCosts extends AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getOptions()
     {
@@ -321,15 +321,40 @@ class GetCosts extends AbstractRequest implements RequestInterface
     }
 
     /**
+	 * Replace all options with string containing options
      * @param string $options
      * @return GetCosts
      */
     public function setOptions($options)
     {
-        $this->options = $options;
+        $this->options = str_split($options);
         return $this;
     }
 
+    /**
+	 * Add a single option letter
+     * @param string $option
+     * @return GetCosts
+     */
+    public function addOption($option)
+    {
+		if (strlen ($option) == 1)
+			{
+			$this->options[] = strtoupper($option);
+			}
+        return $this;
+    }
+
+    /**
+	 * Clear all set options
+     * @return GetCosts
+     */
+    public function resetOptions()
+    {
+        $this->options = [];
+        return $this;
+    }
+	
     /**
      * @return string
      */

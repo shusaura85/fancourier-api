@@ -24,7 +24,9 @@ Functions in GetCosts REQUEST (only the set* functions are shown, the get* funct
 ->setWidth($width)
 ->setHeight($height)
 ->setDeclaredValue($value)
-->setOptions($options)
+->addOption($option)	// add a single option
+->resetOptions()		// clear set options
+->setOptions($options)	// set all options as a single string, replaces already added options with addOption
 ->setService($service)
 */
 
