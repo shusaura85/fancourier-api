@@ -12,6 +12,7 @@ class PrintAwb extends AbstractRequest implements RequestInterface
     private $awbs = [];
     private $pdf = true;
     private $zpl = false;
+	private $dpi = -1;	// dots per inch. only applies for ZPL
     private $lang = 'ro';
     private $size = '';
 
@@ -38,6 +39,10 @@ class PrintAwb extends AbstractRequest implements RequestInterface
 		if ($this->zpl)
 			{
 			$arr['zpl'] = 1;
+			if ($this->dpi > 0)
+				{
+				$arr['dpi'] = $this->dpi;
+				}
 			}
 		
 		// add the format only if user requests a specific size
@@ -132,6 +137,25 @@ class PrintAwb extends AbstractRequest implements RequestInterface
     {
         $this->zpl = $active;
         if ($this->pdf) { $this->pdf = false; }	// disable PDF in case it's active
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDpi()
+    {
+        return $this->dpi;
+    }
+
+    /**
+	 / Set the DPI (dots per inch) for the returned label (only applies to ZPL)
+     * @param int $dpi
+     * @return PrintAwb
+     */
+    public function setDpi($dpi = -1)
+    {
+        $this->dpi = $dpi;
         return $this;
     }
 
