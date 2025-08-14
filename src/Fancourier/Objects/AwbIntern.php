@@ -15,7 +15,7 @@ class AwbIntern
     protected $service = 'Standard';			// info.service
     protected $bank = '';	// optional						// info.bank
     protected $iban = '';	// optional						// info.bankAccount
-    protected $envelopes = 0;	// optionalif parcels set	// info.packages.envelopes
+    protected $envelopes = 0;	// optional if parcels set	// info.packages.envelope
     protected $parcels = 0;	// optional if envelopes set	// info.packages.parcel
     protected $weight = 0;									// info.weight
 	protected $CoD = '';	// cash on delivery, optional			// info.cod
@@ -83,8 +83,8 @@ class AwbIntern
 					"declaredValue" => $this->declaredValue, //optional 
 					"payment" => $this->paymentType, //obligatoriu 
 					"refund" => $this->refund, //optional 
-					"returnPayment" => $this->returnPayment, //obligatoriu 
-					"observation" => $this->notes, //obligatoriu 
+					"returnPayment" => $this->returnPayment, //optional 
+					"observation" => $this->notes, //optional 
 					"content" => $this->contents, //optional 
 					"dimensions" => [
 								"length" => $this->length,
