@@ -76,7 +76,7 @@ class CreateAwb extends Generic implements ResponseInterface
 				}
 			else
 				{
-				$this->setErrorMessage($response_json['message']);
+				$this->setErrorMessage($response_json['message'] ?? $response_json['errors'] ?? 'Unknown error');
 				$this->setErrorCode(-1);
 				}
 			}
