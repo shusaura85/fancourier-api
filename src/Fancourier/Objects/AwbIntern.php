@@ -46,8 +46,8 @@ class AwbIntern
     protected $street = '';										// info.recipient.address.street
     protected $number = '';									// info.recipient.address.streetNo
 	
-	protected $pickupLocation = '';	// ONLY FOR PUDO		// info.recipient.address.pickupLocation
-    protected $dropOffLocation = ''; // ONLY FOR PUDO		// info.sender.address.dropOffLocation
+    protected $pickupLocationId = '';	// ONLY FOR PUDO		// info.recipient.address.pickupLocationId
+    protected $dropOffLocationId = ''; // ONLY FOR PUDO		// info.sender.address.dropOffLocationId
 
     protected $postalCode = '';								// info.recipient.address.zipcode
 	
@@ -106,7 +106,7 @@ class AwbIntern
 								"locality" => $this->city, // {{url}}/localities 
 								"street" => $this->street, // {{url}}/streets 
 								"streetNo" => strval($this->number), 	// API demands this to be a string
-								"pickupLocation" => $this->pickupLocation,//doar pentru FANbox - {{url}}/pickup-points 
+								"pickupLocationId" => $this->pickupLocationId,//doar pentru FANbox - {{url}}/pickup-points 
 								"zipCode" => $this->postalCode,
 								
 								"building" => $this->building, 
@@ -118,7 +118,7 @@ class AwbIntern
                         ],
             "sender" => [
                 "address" => [
-                    "dropOffLocation" => $this->dropOffLocation
+                    "dropOffLocationId" => $this->dropOffLocationId
                 ]
             ]
         ];
@@ -712,16 +712,16 @@ class AwbIntern
      */
     public function getPickupLocation()
     {
-        return $this->pickupLocation;
+        return $this->pickupLocationId;
     }
 
     /**
-     * @param string $number
+     * @param string $pudoId
      * @return AwbIntern
      */
-    public function setPickupLocation($number)
+    public function setPickupLocation($pudoId)
     {
-        $this->pickupLocation = $number;
+        $this->pickupLocationId = $pudoId;
         return $this;
     }
 
@@ -820,16 +820,16 @@ class AwbIntern
      */
     public function getDropOffLocation()
     {
-        return $this->dropOffLocation;
+        return $this->dropOffLocationId;
     }
 
     /**
-     * @param string $number
+     * @param string $pudoId
      * @return AwbIntern
      */
-    public function setDropOffLocation($number)
+    public function setDropOffLocation($pudoId)
     {
-        $this->dropOffLocation = $number;
+        $this->dropOffLocationId = $pudoId;
         return $this;
     }
 

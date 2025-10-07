@@ -110,7 +110,8 @@ All set* functions here have an equivalent get* function
 ->setCity($city)
 ->setStreet($street)
 ->setNumber($number)
-->setPickupLocation($pudo)		// for PUDO deliveries
+->setPickupLocation($pudoId)		// for PUDO deliveries (where recipient picks up the package)
+->seDropOffLocation($pudoId)		// for PUDO deliveries (where sender leaves package for pickup)
 ->setPostalCode($postalCode)
 ->setBuilding($building)
 ->setEntrance($entrance)

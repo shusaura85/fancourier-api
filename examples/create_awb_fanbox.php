@@ -18,7 +18,7 @@ $awb
 	->setPhone('0723000000')
 	->setCounty('Tulcea')
 	->setCity('Tulcea')
-	->setDropOffLocation('FANbox Winmarkt Tulcea CT')		// FANBox/Paypoint name
+	->setPickupLocation('F1011137"')		// FANBox/Paypoint ID
 	->setStreet('Str. Babadag')								// must be the street defined in the PUDO details
 	->setNumber('1')											// must be the street number defined in the PUDO details
 	->addOption('W')			// PUDO dropoff - required for PUDO delivery, use option "V" for PUDO pickup
@@ -109,7 +109,8 @@ All set* functions here have an equivalent get* function
 ->setCity($city)
 ->setStreet($street)
 ->setNumber($number)
-->setPickupLocation($pudo)		// for PUDO deliveries
+->setPickupLocation($pudoId)		// for PUDO deliveries (where recipient picks up the package)
+->seDropOffLocation($pudoId)		// for PUDO deliveries (where sender leaves package for pickup)
 ->setPostalCode($postalCode)
 ->setBuilding($building)
 ->setEntrance($entrance)
