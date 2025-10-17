@@ -55,6 +55,22 @@ class AwbIntern
     protected $entrance = '';								// info.recipient.address.entrance
     protected $floor = '';									// info.recipient.address.floor
     protected $apartment = '';								// info.recipient.address.apartment
+
+    protected $senderName = '';
+    protected $senderContactPerson = '';
+    protected $senderPhone = '';
+    protected $senderAltPhone = '';
+    protected $senderEmail = '';
+
+    protected $senderCounty = ''; // county							// info.sender.address.county
+    protected $senderCity = ''; // locality							// info.sender.address.locality
+    protected $senderStreet = '';										// info.sender.address.street
+    protected $senderNumber = '';									// info.sender.address.streetNo
+	protected $senderPostalCode = '';								// info.sender.address.zipcode
+    protected $senderBuilding = '';								// info.sender.address.building
+    protected $senderEntrance = '';								// info.sender.address.entrance
+    protected $senderFloor = '';									// info.sender.address.floor
+    protected $senderApartment = '';								// info.sender.address.apartment
 	
 	public function __construct()
 		{
@@ -122,6 +138,31 @@ class AwbIntern
                 ]
             ]
         ];
+		
+		if ( ($this->senderName != '') || ($this->senderContactPerson != '') )
+			{
+			$arr["sender"] = [
+						"name" => $this->senderName, 
+						"contactPerson" => $this->senderContactPerson,
+						"phone" => $this->senderPhone,
+						"secondaryPhone" => $this->senderAltPhone, // optional
+						"email" => $this->senderEmail, 
+						"address" => [ //obligatoriu
+								"county" => $this->senderCounty, // {{url}}/counties 
+								"locality" => $this->senderCity, // {{url}}/localities 
+								"street" => $this->senderStreet, // {{url}}/streets 
+								"streetNo" => strval($this->senderNumber), 	// API demands this to be a string
+								"dropOffLocationId" => $this->dropOffLocationId, //doar pentru FANbox - {{url}}/pickup-points 
+								"zipCode" => $this->senderPostalCode,
+								
+								"building" => $this->senderBuilding, 
+								"entrance" => $this->senderEntrance, 
+								"floor" => $this->senderFloor, 
+								"apartment" => $this->senderApartment,
+								//"country" => "Romania" // optional
+								] 
+                        ];
+			}
 		
 		return $arr;
 		}
@@ -833,6 +874,265 @@ class AwbIntern
         return $this;
     }
 
+
+	/******
+	SENDER
+	*******/
+
+
+	/**
+     * @return mixed
+     */
+    public function getSenderName()
+    {
+        return $this->senderName;
+    }
+
+    /**
+     * @param mixed $Sender
+     * @return AwbExtern
+     */
+    public function setSenderName($sender)
+    {
+        $this->senderName = $sender;
+        return $this;
+    }
+
+   /**
+     * @return mixed
+     */
+    public function getSenderContactPerson()
+    {
+        return $this->senderContactPerson;
+    }
+
+    /**
+     * @param mixed $contactPerson
+     * @return AwbExtern
+     */
+    public function setSenderContactPerson($contactPerson)
+    {
+        $this->senderContactPerson = $contactPerson;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderPhone()
+    {
+        return $this->senderPhone;
+    }
+
+    /**
+     * @param mixed $phone
+     * @return AwbExtern
+     */
+    public function setSenderPhone($phone)
+    {
+        $this->senderPhone = $phone;
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSenderAltPhone()
+    {
+        return $this->senderAltPhone;
+    }
+
+    /**
+     * @param mixed $phone
+     * @return AwbExtern
+     */
+    public function setSenderAltPhone($phone)
+    {
+        $this->senderAltPhone = $phone;
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSenderEmail()
+    {
+        return $this->senderEmail;
+    }
+
+    /**
+     * @param string $email
+     * @return AwbExtern
+     */
+    public function setSenderEmail($email)
+    {
+        $this->senderEmail = $email;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderCounty()
+    {
+        return $this->senderCounty;
+    }
+
+    /**
+     * @param mixed $county
+     * @return AwbExtern
+     */
+    public function setSenderCounty($county)
+    {
+        $this->senderCounty = $county;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderCity()
+    {
+        return $this->senderCity;
+    }
+
+    /**
+     * @param mixed $city
+     * @return AwbExtern
+     */
+    public function setSenderCity($city)
+    {
+        $this->senderCity = $city;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderStreet()
+    {
+        return $this->senderStreet;
+    }
+
+    /**
+     * @param mixed $street
+     * @return AwbExtern
+     */
+    public function setSenderStreet($street)
+    {
+        $this->senderStreet = $street;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderNumber()
+    {
+        return $this->senderNumber;
+    }
+
+    /**
+     * @param string $number
+     * @return AwbExtern
+     */
+    public function setSenderNumber($number)
+    {
+        $this->senderNumber = $number;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderPostalCode()
+    {
+        return $this->senderPostalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return AwbExtern
+     */
+    public function setSenderPostalCode($postalCode)
+    {
+        $this->senderPostalCode = $postalCode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderBuilding()
+    {
+        return $this->senderBuilding;
+    }
+
+    /**
+     * @param string $building
+     * @return AwbExtern
+     */
+    public function setSenderBuilding($building)
+    {
+        $this->senderBuilding = $building;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderEntrance()
+    {
+        return $this->senderEntrance;
+    }
+
+    /**
+     * @param string $entrance
+     * @return AwbExtern
+     */
+    public function setSenderEntrance($entrance)
+    {
+        $this->senderEntrance = $entrance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderFloor()
+    {
+        return $this->senderFloor;
+    }
+
+    /**
+     * @param string $floor
+     * @return AwbExtern
+     */
+    public function setSenderFloor($floor)
+    {
+        $this->senderFloor = $floor;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderApartment()
+    {
+        return $this->senderApartment;
+    }
+
+    /**
+     * @param string $apartment
+     * @return AwbExtern
+     */
+    public function setSenderApartment($apartment)
+    {
+        $this->senderApartment = $apartment;
+        return $this;
+    }
 
 // ********************************************
 // ************** FUNCTII PT REZULTATE ********
