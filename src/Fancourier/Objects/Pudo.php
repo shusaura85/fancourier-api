@@ -10,92 +10,105 @@ class Pudo
 	protected $description;
 	protected $latitude;
 	protected $longitude;
-	
+
 	protected $address;
-	
+
 	protected $schedule;
 	protected $drawer;
-	
-	protected $phones;	// array
+
+	protected $phones;
 	protected $email;
-	
+	protected $highDemand;
+	protected $paymentMethods;
+
 	public function __construct($data)
 		{
 		$this->id				= $data['id'] ?? '';
 		$this->name				= $data['name'] ?? '';
 		$this->routingLocation	= $data['routingLocation'] ?? '';
 		$this->description		= $data['description'] ?? '';
-		
+
 		$this->address			= $data['address'] ?? [];
-		
+
 		$this->latitude			= $data['latitude'] ?? '';
 		$this->longitude		= $data['longitude'] ?? '';
-		
+
 		$this->schedule			= $data['schedule'] ?? [];
 		$this->drawer			= $data['drawer'] ?? [];
-		
+
 		$this->phones			= $data['phones'] ?? [];
-		
+
 		$this->email			= $data['email'] ?? '';
+		$this->highDemand		= $data['highDemand'] ?? false;
+		$this->paymentMethods	= $data['paymentMethods'] ?? [];
 		}
-	
+
 	public function getId(): string
 		{
 		return $this->id;
 		}
-	
+
 	public function getName(): string
 		{
 		return $this->name ?? '';
 		}
-		
+
 	public function getRoutingLocation(): string
 		{
 		return $this->routingLocation ?? '';
 		}
-	
+
 	public function getDescription(): string
 		{
 		return $this->description ?? '';
 		}
-	
+
 	public function getLatitude(): string
 		{
 		return $this->latitude ?? '';
 		}
-	
+
 	public function getLongitude(): string
 		{
 		return $this->longitude ?? '';
 		}
-	
+
 	public function getAddress(): array
 		{
 		return $this->address ?? '';
 		}
-	
-	public function getSchedule() //: array|string
+
+	public function getSchedule(): array
 		{
-		return $this->schedule ?? '';
+		return $this->schedule ?? [];
 		}
-	
-	public function getDrawer() //: array|string
+
+	public function getDrawer(): array
 		{
-		return $this->drawer ?? '';
+		return $this->drawer ?? [];
 		}
-	
-	public function getPhones() //: array|string
+
+	public function getPhones(): array
 		{
-		return $this->phones ?? '';
+		return $this->phones ?? [];
 		}
-	
+
 	public function getEmail(): string
 		{
 		return $this->email ?? '';
 		}
-	
-	
-	
+
+	public function getHighDemand(): bool
+		{
+		return $this->highDemand ?? false;
+		}
+
+	public function getPaymentMethods(): array
+		{
+		return $this->paymentMethods ?? [];
+		}
+
+
 	/* return array with data similar to fan courier api response */
 	public function getArray(): array
 		{
@@ -111,9 +124,11 @@ class Pudo
 			"drawer"			=> $this->drawer,
 			"phones"			=> $this->phones,
 			"email"				=> $this->email,
+			"highDemand"		=> $this->highDemand,
+			"paymentMethods"	=> $this->paymentMethods,
 			];
-		
+
 		return $arr;
 		}
-	
+
 }
